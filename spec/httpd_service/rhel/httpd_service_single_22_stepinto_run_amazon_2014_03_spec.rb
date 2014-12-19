@@ -46,87 +46,87 @@ describe 'httpd_service::single on amazon-2014.03' do
 
   context 'when stepping into httpd_service' do
     it 'installs package[httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to install_package('default create httpd')
+      expect(httpd_service_single_22_run_amazon_2014_03).to install_package('default :create httpd')
         .with(
         package_name: 'httpd'
         )
     end
 
     it 'deletes file[/etc/httpd/conf.d/README]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default create /etc/httpd/conf.d/README')
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default :create /etc/httpd/conf.d/README')
         .with(
         path: '/etc/httpd/conf.d/README'
         )
     end
 
     it 'deletes file[/etc/httpd/conf.d/welcome.conf]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default create /etc/httpd/conf.d/welcome.conf')
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default :create /etc/httpd/conf.d/welcome.conf')
         .with(
         path: '/etc/httpd/conf.d/welcome.conf'
         )
     end
 
     it 'deletes file[/etc/httpd/conf.d/proxy_ajp.conf]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default create /etc/httpd/conf.d/proxy_ajp.conf')
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default :create /etc/httpd/conf.d/proxy_ajp.conf')
         .with(
         path: '/etc/httpd/conf.d/proxy_ajp.conf'
         )
     end
 
     it 'deletes file[/etc/httpd/conf.d/notrace.conf]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default create /etc/httpd/conf.d/notrace.conf')
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not delete_file('default :create /etc/httpd/conf.d/notrace.conf')
         .with(
         path: '/etc/httpd/conf.d/notrace.conf'
         )
     end
 
     it 'installs package[net-tools]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to install_package('default create net-tools')
+      expect(httpd_service_single_22_run_amazon_2014_03).to install_package('default :create net-tools')
         .with(
         package_name: 'net-tools'
         )
     end
 
-    it 'creates httpd_module[default create log_config]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module('default create log_config')
+    it 'creates httpd_module[default :create log_config]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module('default :create log_config')
         .with(
         module_name: 'log_config'
         )
     end
 
-    it 'creates httpd_module[default create logio]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module('default create logio')
+    it 'creates httpd_module[default :create logio]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module('default :create logio')
         .with(
         module_name: 'logio'
         )
     end
 
-    it 'creates link[default create /usr/sbin/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default create /usr/sbin/httpd')
+    it 'creates link[default :create /usr/sbin/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default :create /usr/sbin/httpd')
         .with(
         target_file: '/usr/sbin/httpd',
         to: '/usr/sbin/httpd'
         )
     end
 
-    it 'creates link[default create /usr/sbin/httpd.worker]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default create /usr/sbin/httpd.worker')
+    it 'creates link[default :create /usr/sbin/httpd.worker]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default :create /usr/sbin/httpd.worker')
         .with(
         target_file: '/usr/sbin/httpd.worker',
         to: '/usr/sbin/httpd.worker'
         )
     end
 
-    it 'creates link[default create /usr/sbin/httpd.event]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default create /usr/sbin/httpd.event')
+    it 'creates link[default :create /usr/sbin/httpd.event]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to_not create_link('default :create /usr/sbin/httpd.event')
         .with(
         target_file: '/usr/sbin/httpd.event',
         to: '/usr/sbin/httpd.event'
         )
     end
 
-    it 'creates httpd_config[default create mpm_worker]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_config('default create mpm_worker')
+    it 'creates httpd_config[default :create mpm_worker]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_config('default :create mpm_worker')
         .with(
         config_name: 'mpm_worker',
         instance: 'default',
@@ -135,8 +135,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates directory[default create /etc/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /etc/httpd')
+    it 'creates directory[default :create /etc/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /etc/httpd')
         .with(
         path: '/etc/httpd',
         user: 'root',
@@ -146,8 +146,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates directory[default create /etc/httpd/conf]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /etc/httpd/conf')
+    it 'creates directory[default :create /etc/httpd/conf]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /etc/httpd/conf')
         .with(
         path: '/etc/httpd/conf',
         user: 'root',
@@ -157,8 +157,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates directory[default create /etc/httpd/conf.d]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /etc/httpd/conf.d')
+    it 'creates directory[default :create /etc/httpd/conf.d]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /etc/httpd/conf.d')
         .with(
         path: '/etc/httpd/conf.d',
         user: 'root',
@@ -168,8 +168,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates directory[default create /usr/lib64/httpd/modules]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /usr/lib64/httpd/modules')
+    it 'creates directory[default :create /usr/lib64/httpd/modules]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /usr/lib64/httpd/modules')
         .with(
         path: '/usr/lib64/httpd/modules',
         user: 'root',
@@ -179,8 +179,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates directory[default create /var/log/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /var/log/httpd')
+    it 'creates directory[default :create /var/log/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /var/log/httpd')
         .with(
         path: '/var/log/httpd',
         user: 'root',
@@ -190,24 +190,24 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates link[default create /etc/httpd/logs]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default create /etc/httpd/logs')
+    it 'creates link[default :create /etc/httpd/logs]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default :create /etc/httpd/logs')
         .with(
         target_file: '/etc/httpd/logs',
         to: '../../var/log/httpd'
         )
     end
 
-    it 'creates link[default create /etc/httpd/modules]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default create /etc/httpd/modules')
+    it 'creates link[default :create /etc/httpd/modules]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default :create /etc/httpd/modules')
         .with(
         target_file: '/etc/httpd/modules',
         to: '../../usr/lib64/httpd/modules'
         )
     end
 
-    it 'creates directory[default create /var/run/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default create /var/run/httpd')
+    it 'creates directory[default :create /var/run/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_directory('default :create /var/run/httpd')
         .with(
         path: '/var/run/httpd',
         user: 'root',
@@ -217,16 +217,16 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates link[default create /etc/httpd/run]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default create /etc/httpd/run')
+    it 'creates link[default :create /etc/httpd/run]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_link('default :create /etc/httpd/run')
         .with(
         target_file: '/etc/httpd/run',
         to: '../../var/run/httpd'
         )
     end
 
-    it 'creates template[default create /etc/httpd/conf/mime.types]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default create /etc/httpd/conf/mime.types')
+    it 'creates template[default :create /etc/httpd/conf/mime.types]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default :create /etc/httpd/conf/mime.types')
         .with(
         path: '/etc/httpd/conf/mime.types',
         source: 'magic.erb',
@@ -237,8 +237,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates template[default create /etc/httpd/conf/httpd.conf]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default create /etc/httpd/conf/httpd.conf')
+    it 'creates template[default :create /etc/httpd/conf/httpd.conf]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default :create /etc/httpd/conf/httpd.conf')
         .with(
         path: '/etc/httpd/conf/httpd.conf',
         source: 'httpd.conf.erb',
@@ -249,8 +249,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates template[default create /etc/rc.d/init.d/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default create /etc/init.d/httpd')
+    it 'creates template[default :create /etc/rc.d/init.d/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default :create /etc/init.d/httpd')
         .with(
         path: '/etc/init.d/httpd',
         source: '2.2/sysvinit/el-6/httpd.erb',
@@ -261,8 +261,8 @@ describe 'httpd_service::single on amazon-2014.03' do
         )
     end
 
-    it 'creates template[default create /etc/sysconfig/httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default create /etc/sysconfig/httpd')
+    it 'creates template[default :create /etc/sysconfig/httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to create_template('default :create /etc/sysconfig/httpd')
         .with(
         path: '/etc/sysconfig/httpd',
         source: 'rhel/sysconfig/httpd-2.2.erb',
@@ -282,8 +282,8 @@ describe 'httpd_service::single on amazon-2014.03' do
       authn_file authz_host
       reqtimeout
     ).each do |mod|
-      it "steps into httpd_service[default] and creates httpd_module[default create #{mod}]" do
-        expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module("default create #{mod}")
+      it "steps into httpd_service[default] and creates httpd_module[default :create #{mod}]" do
+        expect(httpd_service_single_22_run_amazon_2014_03).to create_httpd_module("default :create #{mod}")
           .with(
           module_name: mod,
           instance: 'default',
@@ -292,12 +292,12 @@ describe 'httpd_service::single on amazon-2014.03' do
       end
     end
 
-    it 'manage service[default create httpd]' do
-      expect(httpd_service_single_22_run_amazon_2014_03).to start_service('default create httpd')
+    it 'manage service[default :create httpd]' do
+      expect(httpd_service_single_22_run_amazon_2014_03).to start_service('default :create httpd')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )
-      expect(httpd_service_single_22_run_amazon_2014_03).to enable_service('default create httpd')
+      expect(httpd_service_single_22_run_amazon_2014_03).to enable_service('default :create httpd')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )

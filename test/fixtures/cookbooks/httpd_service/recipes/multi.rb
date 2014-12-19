@@ -39,7 +39,7 @@ httpd_service 'instance-1' do
   startservers '10'
   minspareservers '10'
   maxspareservers '20'
-  action :create
+  action [:create, :start]
 end
 
 # pass everything from node attributes
@@ -59,7 +59,7 @@ httpd_service 'instance-2' do
   startservers node['httpd']['startservers']
   minspareservers node['httpd']['minspareservers']
   maxspareservers node['httpd']['maxspareservers']
-  action :create
+  action [:create, :start]
 end
 
 log 'notify restart' do

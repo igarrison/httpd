@@ -6,7 +6,7 @@ class Chef
   class Resource
     class HttpdService < Chef::Resource::LWRPBase
       self.resource_name = :httpd_service
-      actions :create, :delete, :restart, :reload
+      actions :create, :delete, :start, :stop, :restart, :reload
       default_action :create
 
       attribute :contact, kind_of: String, default: 'webmaster@localhost'

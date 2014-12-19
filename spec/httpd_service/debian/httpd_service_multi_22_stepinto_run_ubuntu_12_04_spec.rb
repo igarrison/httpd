@@ -242,22 +242,22 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
 
   # step_into httpd_service[instance-1]
   context 'when stepping into the httpd_service[instance-1] resource' do
-    it 'steps into httpd_service[instance-1] and installs package[instance-1 create apache2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-1 create apache2')
+    it 'steps into httpd_service[instance-1] and installs package[instance-1 :create apache2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-1 :create apache2')
         .with(
         package_name: 'apache2'
         )
     end
 
     it 'does not run_bash[instance-1 delete remove_package_config]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to_not run_bash('instance-1 create remove_package_config')
+      expect(ubuntu_12_04_multi_stepinto_run).to_not run_bash('instance-1 :create remove_package_config')
         .with(
         user: 'root'
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /var/cache/apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /var/cache/apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /var/cache/apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /var/cache/apache2-instance-1')
         .with(
         path: '/var/cache/apache2-instance-1',
         owner: 'root',
@@ -266,8 +266,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /var/log/apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /var/log/apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /var/log/apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /var/log/apache2-instance-1')
         .with(
         path: '/var/log/apache2-instance-1',
         owner: 'root',
@@ -276,8 +276,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /var/run/apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /var/run/apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /var/run/apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /var/run/apache2-instance-1')
         .with(
         path: '/var/run/apache2-instance-1',
         owner: 'root',
@@ -286,8 +286,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1')
         .with(
         path: '/etc/apache2-instance-1',
         owner: 'root',
@@ -296,8 +296,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1/conf.d]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1/conf.d')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1/conf.d]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1/conf.d')
         .with(
         path: '/etc/apache2-instance-1/conf.d',
         owner: 'root',
@@ -306,8 +306,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1/mods-available]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1/mods-available')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1/mods-available]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1/mods-available')
         .with(
         path: '/etc/apache2-instance-1/mods-available',
         owner: 'root',
@@ -316,8 +316,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1/mods-enabled]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1/mods-enabled')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1/mods-enabled]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1/mods-enabled')
         .with(
         path: '/etc/apache2-instance-1/mods-enabled',
         owner: 'root',
@@ -326,8 +326,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1/sites-available]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1/sites-available')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1/sites-available]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1/sites-available')
         .with(
         path: '/etc/apache2-instance-1/sites-available',
         owner: 'root',
@@ -336,8 +336,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates directory[instance-1 create /etc/apache2-instance-1/sites-enabled]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 create /etc/apache2-instance-1/sites-enabled')
+    it 'steps into httpd_service[instance-1] and creates directory[instance-1 :create /etc/apache2-instance-1/sites-enabled]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-1 :create /etc/apache2-instance-1/sites-enabled')
         .with(
         path: '/etc/apache2-instance-1/sites-enabled',
         owner: 'root',
@@ -346,8 +346,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates template[instance-1 create /etc/apache2-instance-1/envvars]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 create /etc/apache2-instance-1/envvars')
+    it 'steps into httpd_service[instance-1] and creates template[instance-1 :create /etc/apache2-instance-1/envvars]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 :create /etc/apache2-instance-1/envvars')
         .with(
         path: '/etc/apache2-instance-1/envvars',
         source: 'envvars.erb',
@@ -358,8 +358,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates template[instance-1 create /usr/sbin/a2enmod]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 create /usr/sbin/a2enmod')
+    it 'steps into httpd_service[instance-1] and creates template[instance-1 :create /usr/sbin/a2enmod]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 :create /usr/sbin/a2enmod')
         .with(
         path: '/usr/sbin/a2enmod',
         source: '2.2/scripts/a2enmod.erb',
@@ -370,8 +370,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates link[instance-1 create /usr/sbin/a2enmod-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to_not create_link('instance-1 create /usr/sbin/a2enmod-instance-1')
+    it 'steps into httpd_service[instance-1] and creates link[instance-1 :create /usr/sbin/a2enmod-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to_not create_link('instance-1 :create /usr/sbin/a2enmod-instance-1')
         .with(
         target_file: '/usr/sbin/a2enmod-instance-1',
         to: '/usr/sbin/a2enmod',
@@ -380,8 +380,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates link[instance-1 create /usr/sbin/a2dismod-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 create /usr/sbin/a2dismod-instance-1')
+    it 'steps into httpd_service[instance-1] and creates link[instance-1 :create /usr/sbin/a2dismod-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 :create /usr/sbin/a2dismod-instance-1')
         .with(
         target_file: '/usr/sbin/a2dismod-instance-1',
         to: '/usr/sbin/a2enmod',
@@ -390,8 +390,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates link[instance-1 create /usr/sbin/a2ensite-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 create /usr/sbin/a2ensite-instance-1')
+    it 'steps into httpd_service[instance-1] and creates link[instance-1 :create /usr/sbin/a2ensite-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 :create /usr/sbin/a2ensite-instance-1')
         .with(
         target_file: '/usr/sbin/a2ensite-instance-1',
         to: '/usr/sbin/a2enmod',
@@ -400,8 +400,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates link[instance-1 create /usr/sbin/a2dissite-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 create /usr/sbin/a2dissite-instance-1')
+    it 'steps into httpd_service[instance-1] and creates link[instance-1 :create /usr/sbin/a2dissite-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-1 :create /usr/sbin/a2dissite-instance-1')
         .with(
         target_file: '/usr/sbin/a2dissite-instance-1',
         to: '/usr/sbin/a2enmod',
@@ -410,8 +410,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates template[instance-1 create /etc/apache2-instance-1/mime.types]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 create /etc/apache2-instance-1/mime.types')
+    it 'steps into httpd_service[instance-1] and creates template[instance-1 :create /etc/apache2-instance-1/mime.types]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 :create /etc/apache2-instance-1/mime.types')
         .with(
         path: '/etc/apache2-instance-1/mime.types',
         source: 'magic.erb',
@@ -422,15 +422,15 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and deletes file[instance-1 create /etc/apache2-instance-1/ports.conf]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_file('instance-1 create /etc/apache2-instance-1/ports.conf')
+    it 'steps into httpd_service[instance-1] and deletes file[instance-1 :create /etc/apache2-instance-1/ports.conf]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_file('instance-1 :create /etc/apache2-instance-1/ports.conf')
         .with(
         path: '/etc/apache2-instance-1/ports.conf'
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates template[instance-1 create /etc/init.d/apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 create /etc/init.d/apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and creates template[instance-1 :create /etc/init.d/apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 :create /etc/init.d/apache2-instance-1')
         .with(
         path: '/etc/init.d/apache2-instance-1',
         source: '2.2/sysvinit/ubuntu-12.04/apache2.erb',
@@ -442,15 +442,15 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
     end
 
     # begin mpm config section
-    it 'steps into httpd_service[instance-1] and installs package[instance-1 create apache2-mpm-prefork]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-1 create apache2-mpm-prefork')
+    it 'steps into httpd_service[instance-1] and installs package[instance-1 :create apache2-mpm-prefork]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-1 :create apache2-mpm-prefork')
         .with(
         package_name: 'apache2-mpm-prefork'
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates httpd_config[instance-1 create mpm_prefork]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_config('instance-1 create mpm_prefork')
+    it 'steps into httpd_service[instance-1] and creates httpd_config[instance-1 :create mpm_prefork]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_config('instance-1 :create mpm_prefork')
         .with(
         config_name: 'mpm_prefork',
         instance: 'instance-1',
@@ -459,24 +459,24 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-1] and deletes httpd_config[instance-1 create mpm_worker]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-1 create mpm_worker')
+    it 'steps into httpd_service[instance-1] and deletes httpd_config[instance-1 :create mpm_worker]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-1 :create mpm_worker')
         .with(
         config_name: 'mpm_worker',
         instance: 'instance-1'
         )
     end
 
-    it 'steps into httpd_service[instance-1] and deletes httpd_config[instance-1 create mpm_event]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-1 create mpm_event')
+    it 'steps into httpd_service[instance-1] and deletes httpd_config[instance-1 :create mpm_event]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-1 :create mpm_event')
         .with(
         config_name: 'mpm_event',
         instance: 'instance-1'
         )
     end
 
-    it 'steps into httpd_service[instance-1] and creates template[instance-1 create /etc/apache2-instance-1/apache2.conf]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 create /etc/apache2-instance-1/apache2.conf')
+    it 'steps into httpd_service[instance-1] and creates template[instance-1 :create /etc/apache2-instance-1/apache2.conf]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-1 :create /etc/apache2-instance-1/apache2.conf')
         .with(
         path: '/etc/apache2-instance-1/apache2.conf',
         source: 'httpd.conf.erb',
@@ -487,8 +487,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates template[instance-2 create /usr/sbin/a2enmod]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 create /usr/sbin/a2enmod')
+    it 'steps into httpd_service[instance-2] and creates template[instance-2 :create /usr/sbin/a2enmod]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 :create /usr/sbin/a2enmod')
         .with(
         path: '/usr/sbin/a2enmod',
         source: '2.2/scripts/a2enmod.erb',
@@ -508,8 +508,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
       authn_file authz_host
       reqtimeout
     ).each do |mod|
-      it "steps into httpd_service[instance-1] and creates httpd_module[instance-1 create #{mod}]" do
-        expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_module("instance-1 create #{mod}")
+      it "steps into httpd_service[instance-1] and creates httpd_module[instance-1 :create #{mod}]" do
+        expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_module("instance-1 :create #{mod}")
           .with(
           module_name: mod,
           instance: 'instance-1',
@@ -518,13 +518,13 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
       end
     end
 
-    it 'steps into httpd_service[instance-1] and manages service[instance-1 create apache2-instance-1]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to start_service('instance-1 create apache2-instance-1')
+    it 'steps into httpd_service[instance-1] and manages service[instance-1 :create apache2-instance-1]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to start_service('instance-1 :create apache2-instance-1')
         .with(
         service_name: 'apache2-instance-1',
         provider: Chef::Provider::Service::Init::Debian
         )
-      expect(ubuntu_12_04_multi_stepinto_run).to enable_service('instance-1 create apache2-instance-1')
+      expect(ubuntu_12_04_multi_stepinto_run).to enable_service('instance-1 :create apache2-instance-1')
         .with(
         service_name: 'apache2-instance-1',
         provider: Chef::Provider::Service::Init::Debian
@@ -534,22 +534,22 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
 
   # step_into httpd_service[instance-2]
   context 'when stepping into the httpd_service[instance-2] resource' do
-    it 'steps into httpd_service[instance-2] and installs package[instance-2 create apache2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-2 create apache2')
+    it 'steps into httpd_service[instance-2] and installs package[instance-2 :create apache2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-2 :create apache2')
         .with(
         package_name: 'apache2'
         )
     end
 
     it 'does not run_bash[instance-2 delete remove_package_config]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to_not run_bash('instance-2 create remove_package_config')
+      expect(ubuntu_12_04_multi_stepinto_run).to_not run_bash('instance-2 :create remove_package_config')
         .with(
         user: 'root'
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /var/cache/apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /var/cache/apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /var/cache/apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /var/cache/apache2-instance-2')
         .with(
         path: '/var/cache/apache2-instance-2',
         owner: 'root',
@@ -558,8 +558,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /var/log/apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /var/log/apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /var/log/apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /var/log/apache2-instance-2')
         .with(
         path: '/var/log/apache2-instance-2',
         owner: 'root',
@@ -568,8 +568,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /var/run/apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /var/run/apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /var/run/apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /var/run/apache2-instance-2')
         .with(
         path: '/var/run/apache2-instance-2',
         owner: 'root',
@@ -578,8 +578,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2')
         .with(
         path: '/etc/apache2-instance-2',
         owner: 'root',
@@ -588,8 +588,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2/conf.d]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2/conf.d')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2/conf.d]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2/conf.d')
         .with(
         path: '/etc/apache2-instance-2/conf.d',
         owner: 'root',
@@ -598,8 +598,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2/mods-available]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2/mods-available')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2/mods-available]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2/mods-available')
         .with(
         path: '/etc/apache2-instance-2/mods-available',
         owner: 'root',
@@ -608,8 +608,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2/mods-enabled]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2/mods-enabled')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2/mods-enabled]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2/mods-enabled')
         .with(
         path: '/etc/apache2-instance-2/mods-enabled',
         owner: 'root',
@@ -618,8 +618,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2/sites-available]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2/sites-available')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2/sites-available]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2/sites-available')
         .with(
         path: '/etc/apache2-instance-2/sites-available',
         owner: 'root',
@@ -628,8 +628,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates directory[instance-2 create /etc/apache2-instance-2/sites-enabled]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 create /etc/apache2-instance-2/sites-enabled')
+    it 'steps into httpd_service[instance-2] and creates directory[instance-2 :create /etc/apache2-instance-2/sites-enabled]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_directory('instance-2 :create /etc/apache2-instance-2/sites-enabled')
         .with(
         path: '/etc/apache2-instance-2/sites-enabled',
         owner: 'root',
@@ -638,8 +638,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates template[instance-2 create /etc/apache2-instance-2/envvars]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 create /etc/apache2-instance-2/envvars')
+    it 'steps into httpd_service[instance-2] and creates template[instance-2 :create /etc/apache2-instance-2/envvars]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 :create /etc/apache2-instance-2/envvars')
         .with(
         path: '/etc/apache2-instance-2/envvars',
         source: 'envvars.erb',
@@ -650,8 +650,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates link[instance-2 create /usr/sbin/a2enmod-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to_not create_link('instance-2 create /usr/sbin/a2enmod-instance-2')
+    it 'steps into httpd_service[instance-2] and creates link[instance-2 :create /usr/sbin/a2enmod-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to_not create_link('instance-2 :create /usr/sbin/a2enmod-instance-2')
         .with(
         target_file: '/usr/sbin/a2enmod-instance-2',
         to: '/usr/sbin/a2enmod',
@@ -660,8 +660,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates link[instance-2 create /usr/sbin/a2dismod-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 create /usr/sbin/a2dismod-instance-2')
+    it 'steps into httpd_service[instance-2] and creates link[instance-2 :create /usr/sbin/a2dismod-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 :create /usr/sbin/a2dismod-instance-2')
         .with(
         target_file: '/usr/sbin/a2dismod-instance-2',
         to: '/usr/sbin/a2enmod',
@@ -670,8 +670,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates link[instance-2 create /usr/sbin/a2ensite-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 create /usr/sbin/a2ensite-instance-2')
+    it 'steps into httpd_service[instance-2] and creates link[instance-2 :create /usr/sbin/a2ensite-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 :create /usr/sbin/a2ensite-instance-2')
         .with(
         target_file: '/usr/sbin/a2ensite-instance-2',
         to: '/usr/sbin/a2enmod',
@@ -680,8 +680,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates link[instance-2 create /usr/sbin/a2dissite-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 create /usr/sbin/a2dissite-instance-2')
+    it 'steps into httpd_service[instance-2] and creates link[instance-2 :create /usr/sbin/a2dissite-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_link('instance-2 :create /usr/sbin/a2dissite-instance-2')
         .with(
         target_file: '/usr/sbin/a2dissite-instance-2',
         to: '/usr/sbin/a2enmod',
@@ -690,8 +690,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates template[instance-2 create /etc/apache2-instance-2/mime.types]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 create /etc/apache2-instance-2/mime.types')
+    it 'steps into httpd_service[instance-2] and creates template[instance-2 :create /etc/apache2-instance-2/mime.types]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 :create /etc/apache2-instance-2/mime.types')
         .with(
         path: '/etc/apache2-instance-2/mime.types',
         source: 'magic.erb',
@@ -702,15 +702,15 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and deletes file[instance-2 create /etc/apache2-instance-2/ports.conf]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_file('instance-2 create /etc/apache2-instance-2/ports.conf')
+    it 'steps into httpd_service[instance-2] and deletes file[instance-2 :create /etc/apache2-instance-2/ports.conf]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_file('instance-2 :create /etc/apache2-instance-2/ports.conf')
         .with(
         path: '/etc/apache2-instance-2/ports.conf'
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates template[instance-2 create /etc/init.d/apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 create /etc/init.d/apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and creates template[instance-2 :create /etc/init.d/apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 :create /etc/init.d/apache2-instance-2')
         .with(
         path: '/etc/init.d/apache2-instance-2',
         source: '2.2/sysvinit/ubuntu-12.04/apache2.erb',
@@ -722,15 +722,15 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
     end
 
     # begin mpm config section
-    it 'steps into httpd_service[instance-2] and installs package[instance-2 create apache2-mpm-prefork]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-2 create apache2-mpm-prefork')
+    it 'steps into httpd_service[instance-2] and installs package[instance-2 :create apache2-mpm-prefork]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to install_package('instance-2 :create apache2-mpm-prefork')
         .with(
         package_name: 'apache2-mpm-prefork'
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates httpd_config[instance-2 create mpm_prefork]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_config('instance-2 create mpm_prefork')
+    it 'steps into httpd_service[instance-2] and creates httpd_config[instance-2 :create mpm_prefork]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_config('instance-2 :create mpm_prefork')
         .with(
         config_name: 'mpm_prefork',
         instance: 'instance-2',
@@ -739,24 +739,24 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
         )
     end
 
-    it 'steps into httpd_service[instance-2] and deletes httpd_config[instance-2 create mpm_worker]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-2 create mpm_worker')
+    it 'steps into httpd_service[instance-2] and deletes httpd_config[instance-2 :create mpm_worker]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-2 :create mpm_worker')
         .with(
         config_name: 'mpm_worker',
         instance: 'instance-2'
         )
     end
 
-    it 'steps into httpd_service[instance-2] and deletes httpd_config[instance-2 create mpm_event]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-2 create mpm_event')
+    it 'steps into httpd_service[instance-2] and deletes httpd_config[instance-2 :create mpm_event]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to delete_httpd_config('instance-2 :create mpm_event')
         .with(
         config_name: 'mpm_event',
         instance: 'instance-2'
         )
     end
 
-    it 'steps into httpd_service[instance-2] and creates template[instance-2 create /etc/apache2-instance-2/apache2.conf]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 create /etc/apache2-instance-2/apache2.conf')
+    it 'steps into httpd_service[instance-2] and creates template[instance-2 :create /etc/apache2-instance-2/apache2.conf]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to create_template('instance-2 :create /etc/apache2-instance-2/apache2.conf')
         .with(
         path: '/etc/apache2-instance-2/apache2.conf',
         source: 'httpd.conf.erb',
@@ -776,8 +776,8 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
       authn_file authz_host
       reqtimeout
     ).each do |mod|
-      it "steps into httpd_service[instance-2] and creates httpd_module[instance-2 create #{mod}]" do
-        expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_module("instance-2 create #{mod}")
+      it "steps into httpd_service[instance-2] and creates httpd_module[instance-2 :create #{mod}]" do
+        expect(ubuntu_12_04_multi_stepinto_run).to create_httpd_module("instance-2 :create #{mod}")
           .with(
           module_name: mod,
           instance: 'instance-2',
@@ -786,13 +786,13 @@ describe 'httpd_service::multi 2.2 on ubuntu-12.04' do
       end
     end
 
-    it 'steps into httpd_service[instance-2] and manages service[instance-2 create apache2-instance-2]' do
-      expect(ubuntu_12_04_multi_stepinto_run).to start_service('instance-2 create apache2-instance-2')
+    it 'steps into httpd_service[instance-2] and manages service[instance-2 :create apache2-instance-2]' do
+      expect(ubuntu_12_04_multi_stepinto_run).to start_service('instance-2 :create apache2-instance-2')
         .with(
         service_name: 'apache2-instance-2',
         provider: Chef::Provider::Service::Init::Debian
         )
-      expect(ubuntu_12_04_multi_stepinto_run).to enable_service('instance-2 create apache2-instance-2')
+      expect(ubuntu_12_04_multi_stepinto_run).to enable_service('instance-2 :create apache2-instance-2')
         .with(
         service_name: 'apache2-instance-2',
         provider: Chef::Provider::Service::Init::Debian

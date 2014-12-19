@@ -3,7 +3,7 @@
 #
 
 httpd_service 'default' do
-  action :create
+  action [:create, :start]
 end
 
 httpd_config 'hello' do

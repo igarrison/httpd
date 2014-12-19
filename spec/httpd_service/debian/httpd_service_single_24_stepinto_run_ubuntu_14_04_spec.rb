@@ -42,22 +42,22 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
 
   # step_into httpd_service[default]
   context 'when stepping into the httpd_service[default] resource' do
-    it 'steps into httpd_service[default] and installs package[default create apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to install_package('default create apache2')
+    it 'steps into httpd_service[default] and installs package[default :create apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to install_package('default :create apache2')
         .with(
         package_name: 'apache2'
         )
     end
 
     it 'does not run_bash[default delete remove_package_config]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to_not run_bash('default create remove_package_config')
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to_not run_bash('default :create remove_package_config')
         .with(
         user: 'root'
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /var/cache/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /var/cache/apache2')
+    it 'steps into httpd_service[default] and creates directory[default :create /var/cache/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /var/cache/apache2')
         .with(
         path: '/var/cache/apache2',
         owner: 'root',
@@ -66,8 +66,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /var/log/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /var/log/apache2')
+    it 'steps into httpd_service[default] and creates directory[default :create /var/log/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /var/log/apache2')
         .with(
         path: '/var/log/apache2',
         owner: 'root',
@@ -76,8 +76,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /var/run/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /var/run/apache2')
+    it 'steps into httpd_service[default] and creates directory[default :create /var/run/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /var/run/apache2')
         .with(
         path: '/var/run/apache2',
         owner: 'root',
@@ -86,8 +86,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2')
         .with(
         path: '/etc/apache2',
         owner: 'root',
@@ -96,8 +96,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/conf-available]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/conf-available')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/conf-available]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/conf-available')
         .with(
         path: '/etc/apache2/conf-available',
         owner: 'root',
@@ -106,8 +106,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/conf-enabled]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/conf-enabled')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/conf-enabled]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/conf-enabled')
         .with(
         path: '/etc/apache2/conf-enabled',
         owner: 'root',
@@ -116,8 +116,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /var/lock/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /var/lock/apache2')
+    it 'steps into httpd_service[default] and creates directory[default :create /var/lock/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /var/lock/apache2')
         .with(
         path: '/var/lock/apache2',
         owner: 'www-data',
@@ -126,8 +126,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/mods-available]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/mods-available')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/mods-available]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/mods-available')
         .with(
         path: '/etc/apache2/mods-available',
         owner: 'root',
@@ -136,8 +136,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/mods-enabled]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/mods-enabled')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/mods-enabled]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/mods-enabled')
         .with(
         path: '/etc/apache2/mods-enabled',
         owner: 'root',
@@ -146,8 +146,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/sites-available]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/sites-available')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/sites-available]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/sites-available')
         .with(
         path: '/etc/apache2/sites-available',
         owner: 'root',
@@ -156,8 +156,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates directory[default create /etc/apache2/sites-enabled]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default create /etc/apache2/sites-enabled')
+    it 'steps into httpd_service[default] and creates directory[default :create /etc/apache2/sites-enabled]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_directory('default :create /etc/apache2/sites-enabled')
         .with(
         path: '/etc/apache2/sites-enabled',
         owner: 'root',
@@ -166,8 +166,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates template[default create /etc/apache2/envvars]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default create /etc/apache2/envvars')
+    it 'steps into httpd_service[default] and creates template[default :create /etc/apache2/envvars]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default :create /etc/apache2/envvars')
         .with(
         path: '/etc/apache2/envvars',
         source: 'envvars.erb',
@@ -178,8 +178,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates template[default create /usr/sbin/a2enmod]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default create /usr/sbin/a2enmod')
+    it 'steps into httpd_service[default] and creates template[default :create /usr/sbin/a2enmod]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default :create /usr/sbin/a2enmod')
         .with(
         path: '/usr/sbin/a2enmod',
         source: '2.4/scripts/a2enmod.erb',
@@ -190,8 +190,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates link[default create /usr/sbin/a2enmod]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to_not create_link('default create /usr/sbin/a2enmod')
+    it 'steps into httpd_service[default] and creates link[default :create /usr/sbin/a2enmod]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to_not create_link('default :create /usr/sbin/a2enmod')
         .with(
         target_file: '/usr/sbin/a2enmod',
         to: '/usr/sbin/a2enmod',
@@ -200,8 +200,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates link[default create /usr/sbin/a2dismod]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default create /usr/sbin/a2dismod')
+    it 'steps into httpd_service[default] and creates link[default :create /usr/sbin/a2dismod]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default :create /usr/sbin/a2dismod')
         .with(
         target_file: '/usr/sbin/a2dismod',
         to: '/usr/sbin/a2enmod',
@@ -210,8 +210,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates link[default create /usr/sbin/a2ensite]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default create /usr/sbin/a2ensite')
+    it 'steps into httpd_service[default] and creates link[default :create /usr/sbin/a2ensite]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default :create /usr/sbin/a2ensite')
         .with(
         target_file: '/usr/sbin/a2ensite',
         to: '/usr/sbin/a2enmod',
@@ -220,8 +220,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates link[default create /usr/sbin/a2dissite]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default create /usr/sbin/a2dissite')
+    it 'steps into httpd_service[default] and creates link[default :create /usr/sbin/a2dissite]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_link('default :create /usr/sbin/a2dissite')
         .with(
         target_file: '/usr/sbin/a2dissite',
         to: '/usr/sbin/a2enmod',
@@ -230,8 +230,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates template[default create /etc/apache2/mime.types]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default create /etc/apache2/mime.types')
+    it 'steps into httpd_service[default] and creates template[default :create /etc/apache2/mime.types]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default :create /etc/apache2/mime.types')
         .with(
         path: '/etc/apache2/mime.types',
         source: 'magic.erb',
@@ -242,15 +242,15 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and deletes file[default create /etc/apache2/ports.conf]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_file('default create /etc/apache2/ports.conf')
+    it 'steps into httpd_service[default] and deletes file[default :create /etc/apache2/ports.conf]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_file('default :create /etc/apache2/ports.conf')
         .with(
         path: '/etc/apache2/ports.conf'
         )
     end
 
-    it 'steps into httpd_service[default] and creates template[default create /etc/init.d/apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default create /etc/init.d/apache2')
+    it 'steps into httpd_service[default] and creates template[default :create /etc/init.d/apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default :create /etc/init.d/apache2')
         .with(
         path: '/etc/init.d/apache2',
         source: '2.4/sysvinit/ubuntu-14.04/apache2.erb',
@@ -262,15 +262,15 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
     end
 
     # begin mpm config section
-    it 'steps into httpd_service[default] and installs package[default create apache2-mpm-event]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to install_package('default create apache2-mpm-event')
+    it 'steps into httpd_service[default] and installs package[default :create apache2-mpm-event]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to install_package('default :create apache2-mpm-event')
         .with(
         package_name: 'apache2-mpm-event'
         )
     end
 
-    it 'steps into httpd_service[default] and creates httpd_module[default create mpm_event]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_module('default create mpm_event')
+    it 'steps into httpd_service[default] and creates httpd_module[default :create mpm_event]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_module('default :create mpm_event')
         .with(
         module_name: 'mpm_event',
         instance: 'default',
@@ -278,8 +278,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and creates httpd_config[default create mpm_event]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_config('default create mpm_event')
+    it 'steps into httpd_service[default] and creates httpd_config[default :create mpm_event]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_config('default :create mpm_event')
         .with(
         config_name: 'mpm_event',
         instance: 'default',
@@ -288,24 +288,24 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'steps into httpd_service[default] and deletes httpd_config[default create mpm_worker]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_httpd_config('default create mpm_worker')
+    it 'steps into httpd_service[default] and deletes httpd_config[default :create mpm_worker]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_httpd_config('default :create mpm_worker')
         .with(
         config_name: 'mpm_worker',
         instance: 'default'
         )
     end
 
-    it 'steps into httpd_service[default] and deletes httpd_config[default create mpm_prefork]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_httpd_config('default create mpm_prefork')
+    it 'steps into httpd_service[default] and deletes httpd_config[default :create mpm_prefork]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to delete_httpd_config('default :create mpm_prefork')
         .with(
         config_name: 'mpm_prefork',
         instance: 'default'
         )
     end
 
-    it 'steps into httpd_service[default] and creates template[default create /etc/apache2/apache2.conf]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default create /etc/apache2/apache2.conf')
+    it 'steps into httpd_service[default] and creates template[default :create /etc/apache2/apache2.conf]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_template('default :create /etc/apache2/apache2.conf')
         .with(
         path: '/etc/apache2/apache2.conf',
         source: 'httpd.conf.erb',
@@ -323,8 +323,8 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
       env mime negotiation setenvif
       filter deflate status
     ).each do |mod|
-      it "steps into httpd_service[default] and creates httpd_module[default create #{mod}]" do
-        expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_module("default create #{mod}")
+      it "steps into httpd_service[default] and creates httpd_module[default :create #{mod}]" do
+        expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to create_httpd_module("default :create #{mod}")
           .with(
           module_name: mod,
           instance: 'default',
@@ -333,13 +333,13 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
       end
     end
 
-    it 'steps into httpd_service[default] and manages service[default create apache2]' do
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to start_service('default create apache2')
+    it 'steps into httpd_service[default] and manages service[default :create apache2]' do
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to start_service('default :create apache2')
         .with(
         service_name: 'apache2',
         provider: Chef::Provider::Service::Init::Debian
         )
-      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to enable_service('default create apache2')
+      expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to enable_service('default :create apache2')
         .with(
         service_name: 'apache2',
         provider: Chef::Provider::Service::Init::Debian

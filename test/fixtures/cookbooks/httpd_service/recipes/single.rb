@@ -23,5 +23,5 @@ httpd_service node['httpd']['service_name'] do
   threadsperchild node['httpd']['threadsperchild']
   maxrequestworkers node['httpd']['maxrequestworkers']
   maxconnectionsperchild node['httpd']['maxconnectionsperchild']
-  action :create
+  action [:create, :start]
 end
