@@ -116,11 +116,11 @@ describe 'httpd_service::multi on amazon-2014.03' do
   context 'when stepping into httpd_service' do
     # httpd_service[default]
     it 'manages service[default :create httpd]' do
-      expect(httpd_service_multi_22_stepinto_run_amazon_2014_03).to stop_service('default :create httpd')
+      expect(httpd_service_multi_22_stepinto_run_amazon_2014_03).to stop_service('default :delete httpd')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )
-      expect(httpd_service_multi_22_stepinto_run_amazon_2014_03).to disable_service('default :create httpd')
+      expect(httpd_service_multi_22_stepinto_run_amazon_2014_03).to disable_service('default :delete httpd')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )

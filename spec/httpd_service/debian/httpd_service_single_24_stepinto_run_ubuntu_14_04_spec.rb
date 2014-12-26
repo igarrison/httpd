@@ -49,7 +49,7 @@ describe 'httpd_service::multi 2.4 on ubuntu-14.04' do
         )
     end
 
-    it 'does not run_bash[default delete remove_package_config]' do
+    it 'does not run_bash[default :delete remove_package_config]' do
       expect(httpd_service_single_24_stepinto_run_ubuntu_14_04).to_not run_bash('default :create remove_package_config')
         .with(
         user: 'root'

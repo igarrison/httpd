@@ -216,7 +216,7 @@ describe 'httpd_service::single on debian-7.2' do
       )
   end
 
-  it 'steps into httpd_service[default] and delete file[default :create /etc/apache2/ports.conf]' do
+  it 'steps into httpd_service[default] and :delete file[default :create /etc/apache2/ports.conf]' do
     expect(httpd_service_single_22_stepinto_run_debian_7_2).to delete_file('default :create /etc/apache2/ports.conf')
       .with(
       path: '/etc/apache2/ports.conf'
@@ -253,7 +253,7 @@ describe 'httpd_service::single on debian-7.2' do
       )
   end
 
-  it 'steps into httpd_service[default] and delete httpd_config[default :create mpm_prefork]' do
+  it 'steps into httpd_service[default] and :delete httpd_config[default :create mpm_prefork]' do
     expect(httpd_service_single_22_stepinto_run_debian_7_2).to delete_httpd_config('default :create mpm_prefork')
       .with(
       config_name: 'mpm_prefork',
@@ -261,7 +261,7 @@ describe 'httpd_service::single on debian-7.2' do
       )
   end
 
-  it 'steps into httpd_service[default] and delete httpd_config[default :create mpm_event]' do
+  it 'steps into httpd_service[default] and :delete httpd_config[default :create mpm_event]' do
     expect(httpd_service_single_22_stepinto_run_debian_7_2).to delete_httpd_config('default :create mpm_event')
       .with(
       config_name: 'mpm_event',
