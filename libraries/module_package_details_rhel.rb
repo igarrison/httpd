@@ -19,33 +19,6 @@ module Httpd
         version.to_i.to_s
       end
 
-      def delete_files_for_package(name, httpd_version)
-        case node['platform']
-        when 'amazon'
-          ModuleDetails.find_deletes(
-            package: name,
-            httpd_version: httpd_version,
-            platform: node['platform'],
-            platform_version: keyname_for(
-              node['platform'],
-              node['platform_family'],
-              node['platform_version']
-              )
-            )
-        else
-          ModuleDetails.find_deletes(
-            package: name,
-            httpd_version: httpd_version,
-            platform_family: node['platform_family'],
-            platform_version: keyname_for(
-              node['platform'],
-              node['platform_family'],
-              node['platform_version']
-              )
-            )
-        end
-      end
-
       class ModuleDetails
         extend ModuleDetailsDSL
         # rhel-5

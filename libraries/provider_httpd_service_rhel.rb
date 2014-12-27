@@ -13,8 +13,6 @@ class Chef
           true
         end
 
-        # break common and service resources into separate
-        # functions to allow for overriding in a subclass.
         action :create do
           # FIXME: parameterize
           lock_file = nil
@@ -27,43 +25,6 @@ class Chef
           package "#{new_resource.parsed_name} :create #{new_resource.parsed_package_name}" do
             package_name new_resource.parsed_package_name
             action :install
-          end
-
-          # remove cruft dropped off by package
-          if new_resource.parsed_version.to_f < 2.4
-            %w(
-              /etc/httpd/conf.d/README
-              /etc/httpd/conf.d/notrace.conf
-              /etc/httpd/conf.d/welcome.conf
-              /etc/httpd/conf.d/proxy_ajp.conf
-            ).each do |f|
-              file "#{new_resource.parsed_name} :create #{f}" do
-                path f
-                action :nothing
-                subscribes :delete, "package[#{new_resource.parsed_name} :create #{new_resource.parsed_package_name}]", :immediately
-              end
-            end
-          else
-            %w(
-              /etc/httpd/conf.d/autoindex.conf
-              /etc/httpd/conf.d/README
-              /etc/httpd/conf.d/notrace.conf
-              /etc/httpd/conf.d/userdir.conf
-              /etc/httpd/conf.d/welcome.conf
-              /etc/httpd/conf.modules.d/00-base.conf
-              /etc/httpd/conf.modules.d/00-dav.conf
-              /etc/httpd/conf.modules.d/00-lua.conf
-              /etc/httpd/conf.modules.d/00-mpm.conf
-              /etc/httpd/conf.modules.d/00-proxy.conf
-              /etc/httpd/conf.modules.d/00-systemd.conf
-              /etc/httpd/conf.modules.d/01-cgi.conf
-            ).each do |f|
-              file "#{new_resource.parsed_name} :create #{f}" do
-                path f
-                action :nothing
-                subscribes :delete, "package[#{new_resource.parsed_name} :create #{new_resource.parsed_package_name}]", :immediately
-              end
-            end
           end
 
           # FIXME: This is needed for serverspec.
