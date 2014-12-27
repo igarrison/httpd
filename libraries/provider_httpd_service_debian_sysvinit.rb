@@ -16,7 +16,7 @@ class Chef
 
           action :start do
             # init script
-            template "#{new_resource.parsed_name} :create /etc/init.d/#{apache_name}" do
+            template "#{new_resource.name} :create /etc/init.d/#{apache_name}" do
               path "/etc/init.d/#{apache_name}"
               source "#{apache_version}/sysvinit/#{platform_and_version}/apache2.erb"
               owner 'root'
@@ -28,7 +28,7 @@ class Chef
             end
 
             # service management
-            service "#{new_resource.parsed_name} :create #{apache_name}" do
+            service "#{new_resource.name} :create #{apache_name}" do
               service_name apache_name
               supports restart: true, reload: true, status: true
               provider Chef::Provider::Service::Init::Debian
@@ -37,7 +37,7 @@ class Chef
           end
 
           action :stop do
-            service "#{new_resource.parsed_name} :stop #{apache_name}" do
+            service "#{new_resource.name} :stop #{apache_name}" do
               service_name apache_name
               supports restart: true, reload: true, status: true
               provider Chef::Provider::Service::Init::Debian
@@ -46,7 +46,7 @@ class Chef
           end
 
           action :restart do
-            service "#{new_resource.parsed_name} :restart #{apache_name}" do
+            service "#{new_resource.name} :restart #{apache_name}" do
               service_name apache_name
               supports restart: true, reload: true, status: true
               provider Chef::Provider::Service::Init::Debian
@@ -55,7 +55,7 @@ class Chef
           end
 
           action :reload do
-            service "#{new_resource.parsed_name} :reload #{apache_name}" do
+            service "#{new_resource.name} :reload #{apache_name}" do
               service_name apache_name
               supports restart: true, reload: true, status: true
               provider Chef::Provider::Service::Init::Debian
@@ -66,13 +66,13 @@ class Chef
           def delete_stop_service
             # Software installation: This is needed to supply the init
             # script that powers the service facility.
-            package "#{new_resource.parsed_name} :delete #{new_resource.parsed_package_name}" do
+            package "#{new_resource.name} :delete #{new_resource.parsed_package_name}" do
               package_name new_resource.parsed_package_name
-              notifies :run, "bash[#{new_resource.parsed_name} :delete remove_package_config]", :immediately
+              notifies :run, "bash[#{new_resource.name} :delete remove_package_config]", :immediately
               action :install
             end
 
-            bash "#{new_resource.parsed_name} :delete remove_package_config" do
+            bash "#{new_resource.name} :delete remove_package_config" do
               user 'root'
               code <<-EOH
               for i in `ls /etc/apache2 | egrep -v "envvars|apache2.conf"` ; do rm -rf /etc/apache2/$i ; done
@@ -80,7 +80,7 @@ class Chef
               action :nothing
             end
 
-            service "#{new_resource.parsed_name} :delete #{apache_name}" do
+            service "#{new_resource.name} :delete #{apache_name}" do
               service_name apache_name
               supports restart: true, reload: true, status: true
               provider Chef::Provider::Service::Init::Debian

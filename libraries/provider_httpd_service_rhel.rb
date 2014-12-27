@@ -22,14 +22,19 @@ class Chef
           # Chef resources
           #
           # software installation
-          package "#{new_resource.parsed_name} :create #{new_resource.parsed_package_name}" do
+          package "#{new_resource.name} :create #{new_resource.parsed_package_name}" do
             package_name new_resource.parsed_package_name
             action :install
           end
 
+          service "#{new_resource.name} :create httpd" do
+            service_name 'httpd'
+            action [:stop, :disable]
+          end
+          
           # FIXME: This is needed for serverspec.
           # Move into a serverspec recipe
-          package "#{new_resource.parsed_name} :create net-tools" do
+          package "#{new_resource.name} :create net-tools" do
             package_name 'net-tools'
             action :install
           end
@@ -38,26 +43,26 @@ class Chef
           # debian and ubuntu
           if new_resource.parsed_version.to_f < 2.4
             %w( log_config logio ).each do |m|
-              httpd_module "#{new_resource.parsed_name} :create #{m}" do
+              httpd_module "#{new_resource.name} :create #{m}" do
                 module_name m
                 httpd_version new_resource.parsed_version
-                instance new_resource.parsed_instance
+                instance new_resource.instance
                 action :create
               end
             end
           else
             %w( log_config logio unixd version watchdog ).each do |m|
-              httpd_module "#{new_resource.parsed_name} :create #{m}" do
+              httpd_module "#{new_resource.name} :create #{m}" do
                 module_name m
                 httpd_version new_resource.parsed_version
-                instance new_resource.parsed_instance
+                instance new_resource.instance
                 action :create
               end
             end
           end
 
           # httpd binary symlinks
-          link "#{new_resource.parsed_name} :create /usr/sbin/#{apache_name}" do
+          link "#{new_resource.name} :create /usr/sbin/#{apache_name}" do
             target_file "/usr/sbin/#{apache_name}"
             to '/usr/sbin/httpd'
             action :create
@@ -66,32 +71,32 @@ class Chef
 
           # MPM loading
           if new_resource.parsed_version.to_f < 2.4
-            link "#{new_resource.parsed_name} :create /usr/sbin/#{apache_name}.worker" do
+            link "#{new_resource.name} :create /usr/sbin/#{apache_name}.worker" do
               target_file "/usr/sbin/#{apache_name}.worker"
               to '/usr/sbin/httpd.worker'
               action :create
               not_if { apache_name == 'httpd' }
             end
 
-            link "#{new_resource.parsed_name} :create /usr/sbin/#{apache_name}.event" do
+            link "#{new_resource.name} :create /usr/sbin/#{apache_name}.event" do
               target_file "/usr/sbin/#{apache_name}.event"
               to '/usr/sbin/httpd.event'
               action :create
               not_if { apache_name == 'httpd' }
             end
           else
-            httpd_module "#{new_resource.parsed_name} :create mpm_#{new_resource.parsed_mpm}" do
+            httpd_module "#{new_resource.name} :create mpm_#{new_resource.parsed_mpm}" do
               module_name "mpm_#{new_resource.parsed_mpm}"
               httpd_version new_resource.parsed_version
-              instance new_resource.parsed_instance
+              instance new_resource.instance
               action :create
             end
           end
 
           # MPM configuration
-          httpd_config "#{new_resource.parsed_name} :create mpm_#{new_resource.parsed_mpm}" do
+          httpd_config "#{new_resource.name} :create mpm_#{new_resource.parsed_mpm}" do
             config_name "mpm_#{new_resource.parsed_mpm}"
-            instance new_resource.parsed_instance
+            instance new_resource.instance
             source 'mpm.conf.erb'
             variables(config: new_resource)
             cookbook 'httpd'
@@ -99,7 +104,7 @@ class Chef
           end
 
           # configuration directories
-          directory "#{new_resource.parsed_name} :create /etc/#{apache_name}" do
+          directory "#{new_resource.name} :create /etc/#{apache_name}" do
             path "/etc/#{apache_name}"
             user 'root'
             group 'root'
@@ -108,7 +113,7 @@ class Chef
             action :create
           end
 
-          directory "#{new_resource.parsed_name} :create /etc/#{apache_name}/conf" do
+          directory "#{new_resource.name} :create /etc/#{apache_name}/conf" do
             path "/etc/#{apache_name}/conf"
             user 'root'
             group 'root'
@@ -117,7 +122,7 @@ class Chef
             action :create
           end
 
-          directory "#{new_resource.parsed_name} :create /etc/#{apache_name}/conf.d" do
+          directory "#{new_resource.name} :create /etc/#{apache_name}/conf.d" do
             path "/etc/#{apache_name}/conf.d"
             user 'root'
             group 'root'
@@ -127,7 +132,7 @@ class Chef
           end
 
           if new_resource.parsed_version.to_f >= 2.4
-            directory "#{new_resource.parsed_name} :create /etc/#{apache_name}/conf.modules.d" do
+            directory "#{new_resource.name} :create /etc/#{apache_name}/conf.modules.d" do
               path "/etc/#{apache_name}/conf.modules.d"
               user 'root'
               group 'root'
@@ -138,7 +143,7 @@ class Chef
           end
 
           # support directories
-          directory "#{new_resource.parsed_name} :create /usr/#{libarch}/httpd/modules" do
+          directory "#{new_resource.name} :create /usr/#{libarch}/httpd/modules" do
             path "/usr/#{libarch}/httpd/modules"
             user 'root'
             group 'root'
@@ -147,7 +152,7 @@ class Chef
             action :create
           end
 
-          directory "#{new_resource.parsed_name} :create /var/log/#{apache_name}" do
+          directory "#{new_resource.name} :create /var/log/#{apache_name}" do
             path "/var/log/#{apache_name}"
             user 'root'
             group 'root'
@@ -156,13 +161,13 @@ class Chef
             action :create
           end
 
-          link "#{new_resource.parsed_name} :create /etc/#{apache_name}/logs" do
+          link "#{new_resource.name} :create /etc/#{apache_name}/logs" do
             target_file "/etc/#{apache_name}/logs"
             to "../../var/log/#{apache_name}"
             action :create
           end
 
-          link "#{new_resource.parsed_name} :create /etc/#{apache_name}/modules" do
+          link "#{new_resource.name} :create /etc/#{apache_name}/modules" do
             target_file "/etc/#{apache_name}/modules"
             to "../../usr/#{libarch}/httpd/modules"
             action :create
@@ -170,7 +175,7 @@ class Chef
 
           # /var/run
           if elversion > 5
-            directory "#{new_resource.parsed_name} :create /var/run/#{apache_name}" do
+            directory "#{new_resource.name} :create /var/run/#{apache_name}" do
               path "/var/run/#{apache_name}"
               user 'root'
               group 'root'
@@ -179,13 +184,13 @@ class Chef
               action :create
             end
 
-            link "#{new_resource.parsed_name} :create /etc/#{apache_name}/run" do
+            link "#{new_resource.name} :create /etc/#{apache_name}/run" do
               target_file "/etc/#{apache_name}/run"
               to "../../var/run/#{apache_name}"
               action :create
             end
           else
-            link "#{new_resource.parsed_name} :create /etc/#{apache_name}/run" do
+            link "#{new_resource.name} :create /etc/#{apache_name}/run" do
               target_file "/etc/#{apache_name}/run"
               to '../../var/run'
               action :create
@@ -193,7 +198,7 @@ class Chef
           end
 
           # configuration files
-          template "#{new_resource.parsed_name} :create /etc/#{apache_name}/conf/mime.types" do
+          template "#{new_resource.name} :create /etc/#{apache_name}/conf/mime.types" do
             path "/etc/#{apache_name}/conf/mime.types"
             source 'magic.erb'
             owner 'root'
@@ -203,7 +208,7 @@ class Chef
             action :create
           end
 
-          template "#{new_resource.parsed_name} :create /etc/#{apache_name}/conf/httpd.conf" do
+          template "#{new_resource.name} :create /etc/#{apache_name}/conf/httpd.conf" do
             path "/etc/#{apache_name}/conf/httpd.conf"
             source 'httpd.conf.erb'
             owner 'root'
@@ -225,9 +230,9 @@ class Chef
 
           # Install core modules
           new_resource.parsed_modules.each do |mod|
-            httpd_module "#{new_resource.parsed_name} :create #{mod}" do
+            httpd_module "#{new_resource.name} :create #{mod}" do
               module_name mod
-              instance new_resource.parsed_instance
+              instance new_resource.instance
               httpd_version new_resource.parsed_version
               action :create
             end
@@ -237,7 +242,7 @@ class Chef
         action :delete do
           delete_stop_service
 
-          link "#{new_resource.parsed_name} :delete /usr/sbin/#{apache_name}" do
+          link "#{new_resource.name} :delete /usr/sbin/#{apache_name}" do
             target_file "/usr/sbin/#{apache_name}"
             to "/usr/sbin/#{apache_name}"
             action :delete
@@ -246,14 +251,14 @@ class Chef
 
           # MPM loading
           if new_resource.parsed_version.to_f < 2.4
-            link "#{new_resource.parsed_name} :delete /usr/sbin/#{apache_name}.worker" do
+            link "#{new_resource.name} :delete /usr/sbin/#{apache_name}.worker" do
               target_file "/usr/sbin/#{apache_name}.worker"
               to "/usr/sbin/#{apache_name}.worker"
               action :delete
               not_if { apache_name == 'httpd' }
             end
 
-            link "#{new_resource.parsed_name} :delete /usr/sbin/#{apache_name}.event" do
+            link "#{new_resource.name} :delete /usr/sbin/#{apache_name}.event" do
               target_file "/usr/sbin/#{apache_name}.event"
               to "/usr/sbin/#{apache_name}.event"
               action :delete
@@ -262,7 +267,7 @@ class Chef
           end
 
           # configuration directories
-          directory "#{new_resource.parsed_name} :delete /etc/#{apache_name}" do
+          directory "#{new_resource.name} :delete /etc/#{apache_name}" do
             path "/etc/#{apache_name}"
             owner 'root'
             group 'root'
@@ -272,7 +277,7 @@ class Chef
           end
 
           # logs
-          directory "#{new_resource.parsed_name} :delete /var/log/#{apache_name}" do
+          directory "#{new_resource.name} :delete /var/log/#{apache_name}" do
             path "/var/log/#{apache_name}"
             owner 'root'
             group 'root'
@@ -283,7 +288,7 @@ class Chef
 
           # /var/run
           if elversion > 5
-            directory "#{new_resource.parsed_name} :delete /var/run/#{apache_name}" do
+            directory "#{new_resource.name} :delete /var/run/#{apache_name}" do
               path "/var/run/#{apache_name}"
               owner 'root'
               group 'root'
@@ -292,12 +297,12 @@ class Chef
               action :delete
             end
 
-            link "#{new_resource.parsed_name} :delete /etc/#{apache_name}/run" do
+            link "#{new_resource.name} :delete /etc/#{apache_name}/run" do
               target_file "/etc/#{apache_name}/run"
               action :delete
             end
           else
-            link "#{new_resource.parsed_name} :delete /etc/#{apache_name}/run" do
+            link "#{new_resource.name} :delete /etc/#{apache_name}/run" do
               target_file "/etc/#{apache_name}/run"
               action :delete
             end

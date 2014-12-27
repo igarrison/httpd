@@ -29,7 +29,7 @@ class Chef
         "mod_#{module_name}.so"
       end
 
-      def parsed_instance
+      def instance
         return instance if instance
       end
 
@@ -46,7 +46,7 @@ class Chef
         return module_name if module_name
       end
 
-      def parsed_name
+      def name
         return name if name
       end
 

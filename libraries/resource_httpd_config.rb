@@ -17,7 +17,7 @@ class Chef
 
       include Httpd::Service::Helpers
 
-      def parsed_name
+      def name
         return name if name
       end
 
@@ -38,7 +38,7 @@ class Chef
         )
       end
 
-      def parsed_instance
+      def instance
         return instance if instance
       end
 

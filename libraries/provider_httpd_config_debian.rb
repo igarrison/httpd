@@ -15,7 +15,7 @@ class Chef
 
         action :create do
           if new_resource.parsed_httpd_version.to_f < 2.4
-            directory "#{new_resource.parsed_name} create /etc/#{apache_name}/conf.d" do
+            directory "#{new_resource.name} create /etc/#{apache_name}/conf.d" do
               path "/etc/#{apache_name}/conf.d"
               owner 'root'
               group 'root'
@@ -24,7 +24,7 @@ class Chef
               action :create
             end
 
-            template "#{new_resource.parsed_name} create /etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf" do
+            template "#{new_resource.name} create /etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf" do
               path "/etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf"
               owner 'root'
               group 'root'
@@ -35,7 +35,7 @@ class Chef
               action :create
             end
           else
-            directory "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-available" do
+            directory "#{new_resource.name} create /etc/#{apache_name}/conf-available" do
               path "/etc/#{apache_name}/conf-available"
               owner 'root'
               group 'root'
@@ -44,7 +44,7 @@ class Chef
               action :create
             end
 
-            template "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf" do
+            template "#{new_resource.name} create /etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf" do
               path "/etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf"
               owner 'root'
               group 'root'
@@ -55,7 +55,7 @@ class Chef
               action :create
             end
 
-            directory "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-enabled" do
+            directory "#{new_resource.name} create /etc/#{apache_name}/conf-enabled" do
               path "/etc/#{apache_name}/conf-enabled"
               owner 'root'
               group 'root'
@@ -64,7 +64,7 @@ class Chef
               action :create
             end
 
-            link "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf" do
+            link "#{new_resource.name} create /etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf" do
               target_file "/etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf"
               to "/etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf"
               action :create
@@ -74,17 +74,17 @@ class Chef
 
         action :delete do
           if new_resource.parsed_httpd_version.to_f < 2.4
-            file "#{new_resource.parsed_name} create /etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf" do
+            file "#{new_resource.name} create /etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf" do
               path "/etc/#{apache_name}/conf.d/#{new_resource.parsed_config_name}.conf"
               action :delete
             end
           else
-            file "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf" do
+            file "#{new_resource.name} create /etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf" do
               path "/etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf"
               action :delete
             end
 
-            link "#{new_resource.parsed_name} create /etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf" do
+            link "#{new_resource.name} create /etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf" do
               target_file "/etc/#{apache_name}/conf-enabled/#{new_resource.parsed_config_name}.conf"
               to "/etc/#{apache_name}/conf-available/#{new_resource.parsed_config_name}.conf"
               action :delete

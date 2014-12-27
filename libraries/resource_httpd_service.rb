@@ -15,7 +15,7 @@ class Chef
       attribute :keepalive, kind_of: [TrueClass, FalseClass], default: true
       attribute :keepalivetimeout, kind_of: String, default: '5'
       attribute :listen_addresses, kind_of: String, default: ['0.0.0.0']
-      attribute :listen_ports, kind_of: [String, Array], default: %w(80 443)
+      attribute :listen_ports, kind_of: [String, Array], default: %w(80)
       attribute :log_level, kind_of: String, default: 'warn'
       attribute :maxclients, kind_of: String, default: nil
       attribute :maxconnectionsperchild, kind_of: String, default: nil
@@ -40,38 +40,6 @@ class Chef
 
       include Httpd::Service::Helpers
 
-      def parsed_contact
-        return contact if contact
-      end
-
-      def parsed_hostname_lookups
-        return hostname_lookups if hostname_lookups
-      end
-
-      def parsed_instance
-        return instance if instance
-      end
-
-      def parsed_keepalive
-        return keepalive unless keepalive.nil?
-      end
-
-      def parsed_keepalivetimeout
-        return keepalivetimeout if keepalivetimeout
-      end
-
-      def parsed_listen_addresses
-        return listen_addresses if listen_addresses
-      end
-
-      def parsed_listen_ports
-        return listen_ports if listen_ports
-      end
-
-      def parsed_log_level
-        return log_level if log_level
-      end
-
       def parsed_maxclients
         return maxclients if maxclients
         default_value_for(parsed_version, parsed_mpm, :maxclients)
@@ -80,10 +48,6 @@ class Chef
       def parsed_maxconnectionsperchild
         return maxconnectionsperchild if maxconnectionsperchild
         default_value_for(parsed_version, parsed_mpm, :maxconnectionsperchild)
-      end
-
-      def parsed_maxkeepaliverequests
-        return maxkeepaliverequests if maxkeepaliverequests
       end
 
       def parsed_maxrequestsperchild
@@ -142,10 +106,6 @@ class Chef
         parsed_version == '2.4' ? 'event' : 'worker'
       end
 
-      def parsed_name
-        return name if name
-      end
-
       def parsed_package_name
         return package_name if package_name
         package_name_for(
@@ -184,10 +144,6 @@ class Chef
       def parsed_threadsperchild
         return threadsperchild if threadsperchild
         default_value_for(parsed_version, parsed_mpm, :threadsperchild)
-      end
-
-      def parsed_timeout
-        return timeout if timeout
       end
 
       def parsed_version

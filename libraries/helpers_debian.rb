@@ -8,23 +8,23 @@ module Httpd
 
       # support multiple instances
       def apache_name
-        "apache2-#{new_resource.parsed_instance}"
+        "apache2-#{new_resource.instance}"
       end
 
       def a2enmod_name
-        "a2enmod-#{new_resource.parsed_name}"
+        "a2enmod-#{new_resource.name}"
       end
 
       def a2dismod_name
-        "a2dismod-#{new_resource.parsed_name}"
+        "a2dismod-#{new_resource.name}"
       end
 
       def a2ensite_name
-        "a2ensite-#{new_resource.parsed_name}"
+        "a2ensite-#{new_resource.name}"
       end
 
       def a2dissite_name
-        "a2dissite-#{new_resource.parsed_name}"
+        "a2dissite-#{new_resource.name}"
       end
 
       # module things
