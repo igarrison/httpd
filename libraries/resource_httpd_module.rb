@@ -29,10 +29,6 @@ class Chef
         "mod_#{module_name}.so"
       end
 
-      def instance
-        return instance if instance
-      end
-
       def parsed_httpd_version
         return httpd_version if httpd_version
         default_httpd_version_for(
@@ -41,19 +37,11 @@ class Chef
           node['platform_version']
           )
       end
-
-      def parsed_module_name
-        return module_name if module_name
-      end
-
-      def name
-        return name if name
-      end
-
+      
       def parsed_package_name
         return package_name if package_name
         package_name_for_module(
-          parsed_module_name,
+          module_name,
           parsed_httpd_version,
           node['platform'],
           node['platform_family'],

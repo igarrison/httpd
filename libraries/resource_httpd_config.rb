@@ -17,18 +17,6 @@ class Chef
 
       include Httpd::Service::Helpers
 
-      def name
-        return name if name
-      end
-
-      def parsed_config_name
-        return config_name if config_name
-      end
-
-      def parsed_cookbook
-        return cookbook if cookbook
-      end
-
       def parsed_httpd_version
         return httpd_version if httpd_version
         default_httpd_version_for(
@@ -36,18 +24,6 @@ class Chef
           node['platform_family'],
           node['platform_version']
         )
-      end
-
-      def instance
-        return instance if instance
-      end
-
-      def parsed_source
-        return source if source
-      end
-
-      def parsed_variables
-        return variables if variables
       end
     end
   end

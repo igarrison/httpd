@@ -11,7 +11,7 @@ module Httpd
       end
 
       def module_name
-        new_resource.parsed_module_name
+        new_resource.module_name
       end
 
       def module_path
