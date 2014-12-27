@@ -168,7 +168,7 @@ suites:
     includes: [
       'amazon-2014.03',
       'centos-5.8',
-      'centos-6.4',
+      'centos-6.5',
       'debian-7.2',
       'omnios-151006',
       'smartos-13.4.0',
@@ -188,7 +188,7 @@ suites:
     includes: [
       'amazon-2014.03',
       'centos-5.8',
-      'centos-6.4',
+      'centos-6.5',
       'debian-7.2',
       'omnios-151006',
       'smartos-13.4.0',
@@ -269,7 +269,7 @@ suites:
     includes: [
       'amazon-2014.03',
       'centos-5.8',
-      'centos-6.4',
+      'centos-6.5',
       'debian-7.2',
       'omnios-151006',
       'smartos-13.4.0',
