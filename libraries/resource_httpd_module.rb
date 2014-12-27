@@ -37,7 +37,7 @@ class Chef
           node['platform_version']
           )
       end
-      
+
       def parsed_package_name
         return package_name if package_name
         package_name_for_module(

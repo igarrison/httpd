@@ -15,7 +15,7 @@ class Chef
           end
 
           action :start do
-            template "#{new_resource.name} :create /etc/init.d/#{apache_name}" do
+            template "(#{new_resource.name} :create /etc/init.d/#{apache_name})" do
               path "/etc/init.d/#{apache_name}"
               source "#{new_resource.parsed_version}/sysvinit/el-#{elversion}/httpd.erb"
               owner 'root'
@@ -26,7 +26,7 @@ class Chef
               action :create
             end
 
-            template "#{new_resource.name} :create /etc/sysconfig/#{apache_name}" do
+            template "(#{new_resource.name} :create /etc/sysconfig/#{apache_name})" do
               path "/etc/sysconfig/#{apache_name}"
               source "rhel/sysconfig/httpd-#{new_resource.parsed_version}.erb"
               owner 'root'
@@ -38,49 +38,58 @@ class Chef
                 pid_file: pid_file
                 )
               cookbook 'httpd'
-              notifies :restart, "service[#{new_resource.name} :create #{apache_name}]"
+              notifies :restart, "service[(#{new_resource.name} :create #{apache_name})]"
               action :create
             end
 
-            service "#{new_resource.name} :create #{apache_name}" do
+            service "(#{new_resource.name} :create #{apache_name})" do
               service_name apache_name
-              supports restart: true, reload: true, status: true
+              supports status: true
               provider Chef::Provider::Service::Init::Redhat
               action [:start, :enable]
             end
           end
 
           action :stop do
-            service "#{new_resource.name} delete #{apache_name}" do
+            service "(#{new_resource.name} delete #{apache_name})" do
               service_name apache_name
-              supports restart: true, reload: true, status: true
+              supports status: true
               provider Chef::Provider::Service::Init::Redhat
               action :stop
             end
           end
 
           action :restart do
-            service "#{new_resource.name} delete #{apache_name}" do
+            service "(#{new_resource.name} delete #{apache_name})" do
               service_name apache_name
-              supports restart: true, reload: true, status: true
+              supports restart: true
               provider Chef::Provider::Service::Init::Redhat
               action :restart
             end
           end
 
           action :reload do
-            service "#{new_resource.name} delete #{apache_name}" do
+            service "(#{new_resource.name} delete #{apache_name})" do
               service_name apache_name
-              supports restart: true, reload: true, status: true
+              supports reload: true
               provider Chef::Provider::Service::Init::Redhat
               action :reload
             end
           end
 
+          def create_stop_system_service
+            service "(#{new_resource.name} :create httpd)" do
+              service_name 'httpd'
+              supports status: true
+              provider Chef::Provider::Service::Init::Redhat
+              action [:stop, :disable]
+            end
+          end
+
           def delete_stop_service
-            service "#{new_resource.name} :delete #{apache_name}" do
+            service "(#{new_resource.name} :delete #{apache_name})" do
               service_name apache_name
-              supports restart: true, reload: true, status: true
+              supports status: true
               provider Chef::Provider::Service::Init::Redhat
               action [:stop, :disable]
             end
