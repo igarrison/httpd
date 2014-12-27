@@ -74,12 +74,12 @@ module Httpd
 
       def lock_file
         return "/var/lock/#{apache_name}/accept.lock" if apache_version.to_f < 2.4
-        return nil
+        nil
       end
 
       def mutex
         return nil if apache_version.to_f < 2.4
-        return "file:/var/lock/#{apache_name} default"
+        "file:/var/lock/#{apache_name} default"
       end
     end
   end

@@ -31,7 +31,7 @@ class Chef
             service_name 'httpd'
             action [:stop, :disable]
           end
-          
+
           # FIXME: This is needed for serverspec.
           # Move into a serverspec recipe
           package "#{new_resource.name} :create net-tools" do
