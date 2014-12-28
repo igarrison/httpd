@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'httpd_config::default on centos-5.8' do
+describe 'httpd_config::default' do
   let(:httpd_config_stepinto_run_centos_5_8) do
     ChefSpec::Runner.new(
       step_into: 'httpd_config',
@@ -19,10 +19,10 @@ describe 'httpd_config::default on centos-5.8' do
     end
   end
 
-  context 'stepping into httdd_config' do
-    it 'creates directory[hello create /etc/httpd/conf.d]' do
-      expect(httpd_config_stepinto_run_centos_5_8).to create_directory('hello create /etc/httpd/conf.d').with(
-        path: '/etc/httpd/conf.d',
+  context 'stepping into http_config' do
+    it 'creates directory[(hello :create /etc/httpd-default/conf.d)]' do
+      expect(httpd_config_stepinto_run_centos_5_8).to create_directory('(hello :create /etc/httpd-default/conf.d)').with(
+        path: '/etc/httpd-default/conf.d',
         owner: 'root',
         group: 'root',
         mode: '0755',
@@ -30,9 +30,9 @@ describe 'httpd_config::default on centos-5.8' do
         )
     end
 
-    it 'creates template[hello create /etc/httpd/conf.d/hello.conf]' do
-      expect(httpd_config_stepinto_run_centos_5_8).to create_template('hello create /etc/httpd/conf.d/hello.conf').with(
-        path: '/etc/httpd/conf.d/hello.conf',
+    it 'creates template[(hello :create /etc/httpd-default/conf.d/hello.conf)]' do
+      expect(httpd_config_stepinto_run_centos_5_8).to create_template('(hello :create /etc/httpd-default/conf.d/hello.conf)').with(
+        path: '/etc/httpd-default/conf.d/hello.conf',
         owner: 'root',
         group: 'root',
         mode: '0644',
@@ -41,8 +41,8 @@ describe 'httpd_config::default on centos-5.8' do
         )
     end
 
-    it 'creates directory[hello_again create /etc/httpd-foo/conf.d]' do
-      expect(httpd_config_stepinto_run_centos_5_8).to create_directory('hello_again create /etc/httpd-foo/conf.d').with(
+    it 'creates directory[(hello_again :create /etc/httpd-foo/conf.d)]' do
+      expect(httpd_config_stepinto_run_centos_5_8).to create_directory('(hello_again :create /etc/httpd-foo/conf.d)').with(
         path: '/etc/httpd-foo/conf.d',
         owner: 'root',
         group: 'root',
@@ -51,8 +51,8 @@ describe 'httpd_config::default on centos-5.8' do
         )
     end
 
-    it 'creates template[hello_again create /etc/httpd-foo/conf.d/hello_again.conf]' do
-      expect(httpd_config_stepinto_run_centos_5_8).to create_template('hello_again create /etc/httpd-foo/conf.d/hello_again.conf').with(
+    it 'creates template[(hello_again :create /etc/httpd-foo/conf.d/hello_again.conf)]' do
+      expect(httpd_config_stepinto_run_centos_5_8).to create_template('(hello_again :create /etc/httpd-foo/conf.d/hello_again.conf)').with(
         path: '/etc/httpd-foo/conf.d/hello_again.conf',
         owner: 'root',
         group: 'root',

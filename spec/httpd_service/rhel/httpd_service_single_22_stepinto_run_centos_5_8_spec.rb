@@ -13,118 +13,90 @@ describe 'httpd_service::single on rhel-5.8' do
     it 'creates httpd_service[default]' do
       expect(httpd_service_single_22_run_centos_5_8).to create_httpd_service('default')
         .with(
-        parsed_contact: 'webmaster@localhost',
-        parsed_hostname_lookups: 'off',
-        parsed_keepalive: true,
-        parsed_maxkeepaliverequests: '100',
-        parsed_keepalivetimeout: '5',
-        parsed_listen_addresses: ['0.0.0.0'],
-        parsed_listen_ports: %w(80 443),
-        parsed_log_level: 'warn',
-        parsed_package_name: 'httpd',
-        parsed_run_user: 'apache',
-        parsed_run_group: 'apache',
-        parsed_timeout: '400',
-        parsed_version: '2.2',
-        parsed_mpm: 'worker',
-        parsed_startservers: '2',
-        parsed_minspareservers: nil,
-        parsed_maxspareservers: nil,
+        contact: 'webmaster@localhost',
+        hostname_lookups: 'off',
+        keepalive: true,
+        keepalivetimeout: '5',
+        listen_addresses: ['0.0.0.0'],
+        listen_ports: %w(80),
+        log_level: 'warn',
+        maxkeepaliverequests: '100',
+        maxspareservers: nil,
+        minspareservers: nil,
         parsed_maxclients: '150',
+        parsed_maxconnectionsperchild: nil,
         parsed_maxrequestsperchild: '0',
-        parsed_minsparethreads: '25',
+        parsed_maxrequestworkers: nil,
         parsed_maxsparethreads: '75',
+        parsed_minsparethreads: '25',
+        parsed_mpm: 'worker',
+        parsed_package_name: 'httpd',
+        parsed_run_group: 'apache',
+        parsed_run_user: 'apache',
+        parsed_startservers: '2',
         parsed_threadlimit: '64',
         parsed_threadsperchild: '25',
-        parsed_maxrequestworkers: nil,
-        parsed_maxconnectionsperchild: nil
+        parsed_version: '2.2',
+        timeout: '400'
         )
     end
   end
 
   context 'when stepping into httpd_service' do
-    it 'installs package[httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to install_package('default :create httpd')
+    it 'installs package[(default :create httpd)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to install_package('(default :create httpd)')
         .with(
         package_name: 'httpd'
         )
     end
 
-    it 'deletes file[/etc/httpd/conf.d/README]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not delete_file('default :create /etc/httpd/conf.d/README')
-        .with(
-        path: '/etc/httpd/conf.d/README'
-        )
-    end
-
-    it 'deletes file[/etc/httpd/conf.d/welcome.conf]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not delete_file('default :create /etc/httpd/conf.d/welcome.conf')
-        .with(
-        path: '/etc/httpd/conf.d/welcome.conf'
-        )
-    end
-
-    it 'deletes file[/etc/httpd/conf.d/proxy_ajp.conf]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not delete_file('default :create /etc/httpd/conf.d/proxy_ajp.conf')
-        .with(
-        path: '/etc/httpd/conf.d/proxy_ajp.conf'
-        )
-    end
-
-    it 'deletes file[/etc/httpd/conf.d/notrace.conf]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not delete_file('default :create /etc/httpd/conf.d/notrace.conf')
-        .with(
-        path: '/etc/httpd/conf.d/notrace.conf'
-        )
-    end
-
-    it 'installs package[net-tools]' do
-      expect(httpd_service_single_22_run_centos_5_8).to install_package('default :create net-tools')
+    it 'installs package[(default :create net-tools)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to install_package('(default :create net-tools)')
         .with(
         package_name: 'net-tools'
         )
     end
 
-    it 'creates httpd_module[default :create log_config]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module('default :create log_config')
+    it 'creates httpd_module[(default :create log_config)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module('(default :create log_config)')
         .with(
         module_name: 'log_config'
         )
     end
 
-    it 'creates httpd_module[default :create logio]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module('default :create logio')
+    it 'creates httpd_module[(default :create logio)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module('(default :create logio)')
         .with(
         module_name: 'logio'
         )
     end
 
-    it 'creates link[default :create /usr/sbin/httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('default :create /usr/sbin/httpd')
+    it 'creates link[(default :create /usr/sbin/httpd)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('(default :create /usr/sbin/httpd)')
         .with(
         target_file: '/usr/sbin/httpd',
         to: '/usr/sbin/httpd'
         )
     end
 
-    it 'creates link[default :create /usr/sbin/httpd.worker]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('default :create /usr/sbin/httpd.worker')
+    it 'creates link[(default :create /usr/sbin/httpd.worker)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('(default :create /usr/sbin/httpd.worker)')
         .with(
         target_file: '/usr/sbin/httpd.worker',
         to: '/usr/sbin/httpd.worker'
         )
     end
 
-    it 'creates link[default :create /usr/sbin/httpd.event]' do
-      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('default :create /usr/sbin/httpd.event')
+    it 'creates link[(default :create /usr/sbin/httpd.event)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to_not create_link('(default :create /usr/sbin/httpd.event)')
         .with(
         target_file: '/usr/sbin/httpd.event',
         to: '/usr/sbin/httpd.event'
         )
     end
 
-    it 'creates httpd_config[default :create mpm_worker]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_config('default :create mpm_worker')
+    it 'creates httpd_config[(default :create mpm_worker)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_httpd_config('(default :create mpm_worker)')
         .with(
         config_name: 'mpm_worker',
         instance: 'default',
@@ -133,10 +105,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates directory[default :create /etc/httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_directory('default :create /etc/httpd')
+    it 'creates directory[(default :create /etc/httpd-default)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_directory('(default :create /etc/httpd-default)')
         .with(
-        path: '/etc/httpd',
+        path: '/etc/httpd-default',
         user: 'root',
         group: 'root',
         mode: '0755',
@@ -144,10 +116,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates directory[default :create /etc/httpd/conf]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_directory('default :create /etc/httpd/conf')
+    it 'creates directory[(default :create /etc/httpd-default/conf)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_directory('(default :create /etc/httpd-default/conf)')
         .with(
-        path: '/etc/httpd/conf',
+        path: '/etc/httpd-default/conf',
         user: 'root',
         group: 'root',
         mode: '0755',
@@ -155,10 +127,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates directory[default :create /etc/httpd/conf.d]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_directory('default :create /etc/httpd/conf.d')
+    it 'creates directory[(default :create /etc/httpd-default/conf.d)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_directory('(default :create /etc/httpd-default/conf.d)')
         .with(
-        path: '/etc/httpd/conf.d',
+        path: '/etc/httpd-default/conf.d',
         user: 'root',
         group: 'root',
         mode: '0755',
@@ -166,8 +138,8 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates directory[default :create /usr/lib64/httpd/modules]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_directory('default :create /usr/lib64/httpd/modules')
+    it 'creates directory[(default :create /usr/lib64/httpd/modules)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_directory('(default :create /usr/lib64/httpd/modules)')
         .with(
         path: '/usr/lib64/httpd/modules',
         user: 'root',
@@ -177,10 +149,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates directory[default :create /var/log/httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_directory('default :create /var/log/httpd')
+    it 'creates directory[(default :create /var/log/httpd)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_directory('(default :create /var/log/httpd-default)')
         .with(
-        path: '/var/log/httpd',
+        path: '/var/log/httpd-default',
         user: 'root',
         group: 'root',
         mode: '0755',
@@ -188,34 +160,34 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates link[default :create /etc/httpd/logs]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_link('default :create /etc/httpd/logs')
+    it 'creates link[(default :create /etc/httpd-default/logs)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_link('(default :create /etc/httpd-default/logs)')
         .with(
-        target_file: '/etc/httpd/logs',
-        to: '../../var/log/httpd'
+        target_file: '/etc/httpd-default/logs',
+        to: '../../var/log/httpd-default'
         )
     end
 
-    it 'creates link[default :create /etc/httpd/modules]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_link('default :create /etc/httpd/modules')
+    it 'creates link[(default :create /etc/httpd-default/modules)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_link('(default :create /etc/httpd-default/modules)')
         .with(
-        target_file: '/etc/httpd/modules',
+        target_file: '/etc/httpd-default/modules',
         to: '../../usr/lib64/httpd/modules'
         )
     end
 
-    it 'creates link[default :create /etc/httpd/run]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_link('default :create /etc/httpd/run')
+    it 'creates link[(default :create /etc/httpd-default/run)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_link('(default :create /etc/httpd-default/run)')
         .with(
-        target_file: '/etc/httpd/run',
+        target_file: '/etc/httpd-default/run',
         to: '../../var/run'
         )
     end
 
-    it 'creates template[default :create /etc/httpd/conf/mime.types]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_template('default :create /etc/httpd/conf/mime.types')
+    it 'creates template[(default :create /etc/httpd-default/conf/mime.types)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_template('(default :create /etc/httpd-default/conf/mime.types)')
         .with(
-        path: '/etc/httpd/conf/mime.types',
+        path: '/etc/httpd-default/conf/mime.types',
         source: 'magic.erb',
         owner: 'root',
         group: 'root',
@@ -224,10 +196,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates template[default :create /etc/httpd/conf/httpd.conf]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_template('default :create /etc/httpd/conf/httpd.conf')
+    it 'creates template[(default :create /etc/httpd-default/conf/httpd.conf)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_template('(default :create /etc/httpd-default/conf/httpd.conf)')
         .with(
-        path: '/etc/httpd/conf/httpd.conf',
+        path: '/etc/httpd-default/conf/httpd.conf',
         source: 'httpd.conf.erb',
         owner: 'root',
         group: 'root',
@@ -236,10 +208,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates template[default :create /etc/rc.d/init.d/httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_template('default :create /etc/init.d/httpd')
+    it 'creates template[(default :create /etc/rc.d/init.d/httpd)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_template('(default :create /etc/init.d/httpd-default)')
         .with(
-        path: '/etc/init.d/httpd',
+        path: '/etc/init.d/httpd-default',
         source: '2.2/sysvinit/el-5/httpd.erb',
         owner: 'root',
         group: 'root',
@@ -248,10 +220,10 @@ describe 'httpd_service::single on rhel-5.8' do
         )
     end
 
-    it 'creates template[default :create /etc/sysconfig/httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to create_template('default :create /etc/sysconfig/httpd')
+    it 'creates template[(default :create /etc/sysconfig/httpd-default)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to create_template('(default :create /etc/sysconfig/httpd-default)')
         .with(
-        path: '/etc/sysconfig/httpd',
+        path: '/etc/sysconfig/httpd-default',
         source: 'rhel/sysconfig/httpd-2.2.erb',
         owner: 'root',
         group: 'root',
@@ -269,8 +241,8 @@ describe 'httpd_service::single on rhel-5.8' do
       authn_file authz_host
       reqtimeout
     ).each do |mod|
-      it "steps into httpd_service[default] and creates httpd_module[default :create #{mod}]" do
-        expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module("default :create #{mod}")
+      it "steps into httpd_service[default] and creates httpd_module[(default :create #{mod})]" do
+        expect(httpd_service_single_22_run_centos_5_8).to create_httpd_module("(default :create #{mod})")
           .with(
           module_name: mod,
           instance: 'default',
@@ -279,12 +251,12 @@ describe 'httpd_service::single on rhel-5.8' do
       end
     end
 
-    it 'manage service[default :create httpd]' do
-      expect(httpd_service_single_22_run_centos_5_8).to start_service('default :create httpd')
+    it 'manage service[(default :create httpd-default)]' do
+      expect(httpd_service_single_22_run_centos_5_8).to start_service('(default :create httpd-default)')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )
-      expect(httpd_service_single_22_run_centos_5_8).to enable_service('default :create httpd')
+      expect(httpd_service_single_22_run_centos_5_8).to enable_service('(default :create httpd-default)')
         .with(
         provider: Chef::Provider::Service::Init::Redhat
         )
