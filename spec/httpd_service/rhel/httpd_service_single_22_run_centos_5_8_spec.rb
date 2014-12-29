@@ -17,7 +17,7 @@ describe 'httpd_service::single on rhel-5.8' do
         keepalive: true,
         keepalivetimeout: '5',
         listen_addresses: ['0.0.0.0'],
-        listen_ports: %w(80 443),
+        listen_ports: %w(80),
         log_level: 'warn',
         maxkeepaliverequests: '100',
         parsed_maxclients: '150',
