@@ -286,9 +286,9 @@ module Httpd
                 found_in_package: ->(_name) { 'php' }
 
         #
-        # amazon-2014.03
+        # amazon
         #
-        modules for: { platform: 'amazon', platform_version: '2014.03', httpd_version: '2.2' },
+        modules for: { platform: 'amazon', httpd_version: '2.2' },
                 are: %w(
                   actions alias asis auth_basic auth_digest authn_alias authn_anon
                   authn_dbd authn_dbm authn_default authn_file authnz_ldap authz_dbm
@@ -303,7 +303,7 @@ module Httpd
                 ),
                 found_in_package: 'httpd'
 
-        modules for: { platform: 'amazon', platform_version: '2014.03', httpd_version: '2.2' },
+        modules for: { platform: 'amazon', httpd_version: '2.2' },
                 are: %w(
                   perl-devel auth_kerb auth_mysql auth_pgsql
                   authz_ldap dav_svn fcgid geoip nss perl proxy_html python security
@@ -311,11 +311,11 @@ module Httpd
                 ),
                 found_in_package: ->(name) { "mod_#{name}" }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.2' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.2' },
                 are: %w(authz_svn),
                 found_in_package: ->(_name) { 'mod_dav_svn' }
 
-        modules for: { platform: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform: 'amazon', httpd_version: '2.4' },
                 are: %w(
                   access_compat actions alias allowmethods asis auth_basic
                   auth_digest authn_anon authn_core authn_dbd authn_dbm authn_file
@@ -336,30 +336,30 @@ module Httpd
                 ),
                 found_in_package: 'httpd24'
 
-        modules for: { platform: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform: 'amazon', httpd_version: '2.4' },
                 are: %w(
                   auth_kerb fcgid geoip ldap nss perl proxy_html security session
                   ssl wsgi wsgi_py27
                 ),
                 found_in_package: ->(name) { "mod24_#{name}" }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.4' },
                 are: %w(authz_svn dontdothat),
                 found_in_package: ->(_name) { 'mod_dav_svn' }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.4' },
                 are: %w(authnz_ldap),
                 found_in_package: ->(_name) { 'mod_ldap' }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.4' },
                 are: %w(xml2enc),
                 found_in_package: ->(_name) { 'mod_proxy_html' }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.4' },
                 are: %w(rev),
                 found_in_package: ->(_name) { 'mod_revocator' }
 
-        modules for: { platform_family: 'amazon', platform_version: '2014.03', httpd_version: '2.4' },
+        modules for: { platform_family: 'amazon', httpd_version: '2.4' },
                 are: %w(auth_form session_cookie session_crypto session_dbd),
                 found_in_package: ->(_name) { 'mod_session' }
       end
