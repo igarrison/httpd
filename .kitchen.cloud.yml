@@ -164,7 +164,7 @@ suites:
   #
   - name: service22-single
     run_list:
-    - recipe[httpd_service::single]
+    - recipe[httpd_service_test::single]
     includes: [
       'amazon-2014.03',
       'centos-5.8',
@@ -184,7 +184,7 @@ suites:
   #
   - name: service22-multi
     run_list:
-    - recipe[httpd_service::multi]
+    - recipe[httpd_service_test::multi]
     includes: [
       'amazon-2014.03',
       'centos-5.8',
@@ -216,7 +216,7 @@ suites:
   #
   - name: service24-single
     run_list:
-    - recipe[httpd_service::single]
+    - recipe[httpd_service_test::single]
     includes: [
       'amazon-2014.03',
       'centos-7.0',
@@ -234,7 +234,7 @@ suites:
   #
   - name: service24-multi
     run_list:
-    - recipe[httpd_service::multi]
+    - recipe[httpd_service_test::multi]
     includes: [
       'amazon-2014.03',
       'centos-7.0',
@@ -265,7 +265,7 @@ suites:
   #
   - name: module22
     run_list:
-    - recipe[httpd_module]
+    - recipe[httpd_module_test]
     includes: [
       'amazon-2014.03',
       'centos-5.8',
@@ -281,7 +281,7 @@ suites:
 
   - name: module24
     run_list:
-    - recipe[httpd_module]
+    - recipe[httpd_module_test]
     includes: [
       'amazon-2014.03',
       'centos-7.0',
@@ -298,11 +298,11 @@ suites:
   #
   - name: config
     run_list:
-    - recipe[httpd_config]
+    - recipe[httpd_config_test]
 
   #
-  # hello_world
+  # hello_world_test
   #
-  - name: hello_world
+  - name: hello_world_test
     run_list:
-    - recipe[hello_world]
+    - recipe[hello_world_test]

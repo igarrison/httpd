@@ -1,4 +1,4 @@
-name 'httpd_config'
+name 'httpd_config_test'
 version '0.0.1'
 
 depends 'httpd'

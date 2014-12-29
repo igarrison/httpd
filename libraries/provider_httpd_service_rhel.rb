@@ -242,7 +242,7 @@ class Chef
 
           link "#{new_resource.name} :delete /usr/sbin/#{apache_name}" do
             target_file "/usr/sbin/#{apache_name}"
-            to "/usr/sbin/#{apache_name}"
+            to '/usr/sbin/httpd'
             action :delete
             not_if { apache_name == 'httpd' }
           end
@@ -251,14 +251,14 @@ class Chef
           if new_resource.parsed_version.to_f < 2.4
             link "#{new_resource.name} :delete /usr/sbin/#{apache_name}.worker" do
               target_file "/usr/sbin/#{apache_name}.worker"
-              to "/usr/sbin/#{apache_name}.worker"
+              to '/usr/sbin/httpd.worker'
               action :delete
               not_if { apache_name == 'httpd' }
             end
 
             link "#{new_resource.name} :delete /usr/sbin/#{apache_name}.event" do
               target_file "/usr/sbin/#{apache_name}.event"
-              to "/usr/sbin/#{apache_name}.event"
+              to '/usr/sbin/httpd.event'
               action :delete
               not_if { apache_name == 'httpd' }
             end
