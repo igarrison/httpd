@@ -2,15 +2,11 @@ require_relative 'mpm_config_parameter_dsl'
 
 module HttpdCookbook
   module Helpers
-    ## MPM section
-    def default_value_for(version, mpm, parameter)
-      MPMConfigInfo.find httpd_version: version, mpm_model: mpm, parameter: parameter
-    end
-
-    # http://httpd.apache.org/docs/2.2/mod/mpm_common.html
-    # http://httpd.apache.org/docs/2.4/mod/mpm_common.html
     class MPMConfigInfo
       extend MPMConfigParameterDSL
+
+      # http://httpd.apache.org/docs/2.2/mod/mpm_common.html
+      # http://httpd.apache.org/docs/2.4/mod/mpm_common.html
 
       config for: { httpd_version: '2.2', mpm_model: 'prefork' },
              are: {
@@ -136,21 +132,26 @@ module HttpdCookbook
       end
     end
 
+    ## MPM section
+    def default_value_for(version, mpm, parameter)
+      MPMConfigInfo.find httpd_version: version, mpm_model: mpm, parameter: parameter
+    end
+
     def default_httpd_version_for(platform, platform_family, platform_version)
-      keyname = keyname_for(platform, platform_family, platform_version)
+      keyname = keyname_for_service(platform, platform_family, platform_version)
       Pkginfo.pkginfo[platform_family][keyname]['default_version']
     rescue NoMethodError
       nil
     end
 
     def package_name_for(platform, platform_family, platform_version, version)
-      keyname = keyname_for(platform, platform_family, platform_version)
+      keyname = keyname_for_service(platform, platform_family, platform_version)
       Pkginfo.pkginfo[platform_family][keyname][version]['package_name']
     rescue NoMethodError
       nil
     end
 
-    def keyname_for(platform, platform_family, platform_version)
+    def keyname_for_service(platform, platform_family, platform_version)
       case
       when platform_family == 'rhel'
         platform == 'amazon' ? platform_version : platform_version.to_i.to_s

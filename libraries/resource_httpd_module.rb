@@ -1,5 +1,5 @@
 require 'chef/resource/lwrp_base'
-require_relative 'module_package_info'
+require_relative 'helpers_module'
 
 class Chef
   class Resource
@@ -14,7 +14,6 @@ class Chef
       attribute :module_name, kind_of: String, name_attribute: true, required: true
       attribute :package_name, kind_of: String
 
-      include HttpdCookbook::Module::Helpers
       include HttpdCookbook::Helpers
 
       def parsed_filename
