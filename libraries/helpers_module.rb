@@ -338,19 +338,10 @@ module HttpdCookbook
     end
 
     def keyname_for_module(platform, platform_family, platform_version)
-      if platform_family == 'rhel' && platform != 'amazon'
-        major_version(platform_version)
-      elsif platform_family == 'debian' && !(platform == 'ubuntu' || platform_version =~ /sid$/)
-        major_version(platform_version)
-      elsif platform_family == 'freebsd'
-        major_version(platform_version)
-      else
-        platform_version
-      end
-    end
-
-    def major_version(version)
-      version.to_i.to_s
+      return platform_version.to_i.to_s if platform_family == 'rhel' && platform != 'amazon'
+      return platform_version.to_i.to_s if platform_family == 'debian' && !(platform == 'ubuntu' || platform_version =~ /sid$/)
+      return platform_version.to_i.to_s if platform_family == 'freebsd'
+      platform_version
     end
 
     def package_name_for_module(name, httpd_version, platform, platform_family, platform_version)
