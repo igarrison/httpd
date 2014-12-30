@@ -1,5 +1,5 @@
 require 'chef/resource/lwrp_base'
-require_relative 'service_platform_info'
+require_relative 'helpers'
 
 class Chef
   class Resource
@@ -15,7 +15,7 @@ class Chef
       attribute :source, kind_of: String, default: nil
       attribute :variables, kind_of: [Hash], default: nil
 
-      include Httpd::Service::Helpers
+      include HttpdCookbook::Service::Helpers
 
       def parsed_httpd_version
         return httpd_version if httpd_version

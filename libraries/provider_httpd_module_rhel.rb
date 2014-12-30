@@ -7,7 +7,7 @@ class Chef
       class Rhel < Chef::Provider::HttpdModule
         use_inline_resources if defined?(use_inline_resources)
 
-        include Httpd::Helpers::Rhel
+        include HttpdCookbook::Helpers::Rhel
 
         def whyrun_supported?
           true

@@ -1,4 +1,4 @@
-module Httpd
+module HttpdCookbook
   module Helpers
     module Debian
       # version

@@ -1,8 +1,8 @@
-require_relative '../../libraries/service_default_value_for.rb'
+require_relative '../../libraries/helpers.rb'
 
 describe 'default_value_for' do
   before do
-    extend Httpd::Service::Helpers
+    extend HttpdCookbook::Service::Helpers
   end
 
   context 'when using apache 2.2' do

@@ -7,7 +7,7 @@ class Chef
       class Debian < Chef::Provider::HttpdService
         use_inline_resources if defined?(use_inline_resources)
 
-        include Httpd::Helpers::Debian
+        include HttpdCookbook::Helpers::Debian
 
         def whyrun_supported?
           true

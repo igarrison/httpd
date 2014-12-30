@@ -1,4 +1,4 @@
-module Httpd
+module HttpdCookbook
   module Service
     module Helpers
       module MPMModelDSL

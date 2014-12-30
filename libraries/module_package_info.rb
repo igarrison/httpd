@@ -1,6 +1,6 @@
 require_relative 'module_package_info_dsl'
 
-module Httpd
+module HttpdCookbook
   module Module
     module Helpers
       def keyname_for(platform, platform_family, platform_version)

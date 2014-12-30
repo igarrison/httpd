@@ -2,7 +2,7 @@ require_relative '../../libraries/module_package_info.rb'
 
 describe 'looking up module package name' do
   before do
-    extend Httpd::Module::Helpers
+    extend HttpdCookbook::Module::Helpers
   end
 
   it 'returns nil when looking up an invalid package' do

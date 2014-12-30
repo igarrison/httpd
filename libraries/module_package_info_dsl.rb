@@ -1,4 +1,4 @@
-module Httpd
+module HttpdCookbook
   module Module
     module Helpers
       module ModuleInfoDSL

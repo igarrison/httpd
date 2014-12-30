@@ -8,7 +8,7 @@ class Chef
         class Sysvinit < Chef::Provider::HttpdService::Debian
           use_inline_resources if defined?(use_inline_resources)
 
-          include Httpd::Helpers::Debian
+          include HttpdCookbook::Helpers::Debian
 
           def whyrun_supported?
             true

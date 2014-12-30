@@ -2,7 +2,7 @@ require_relative '../../libraries/module_package_info.rb'
 
 describe 'looking up module package name' do
   before do
-    extend Httpd::Module::Helpers
+    extend HttpdCookbook::Module::Helpers
   end
 
   context 'for apache 2.2 on debian 7, 10.04, and 12.04' do

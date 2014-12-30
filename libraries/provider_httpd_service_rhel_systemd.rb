@@ -8,7 +8,7 @@ class Chef
         class Systemd < Chef::Provider::HttpdService::Rhel
           use_inline_resources if defined?(use_inline_resources)
 
-          include Httpd::Helpers::Rhel
+          include HttpdCookbook::Helpers::Rhel
 
           def whyrun_supported?
             true
