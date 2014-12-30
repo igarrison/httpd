@@ -152,26 +152,14 @@ module HttpdCookbook
     end
 
     def keyname_for_service(platform, platform_family, platform_version)
-      case
-      when platform_family == 'rhel'
-        platform == 'amazon' ? platform_version : platform_version.to_i.to_s
-      when platform_family == 'fedora'
-        platform_version
-      when platform_family == 'debian'
-        if platform == 'ubuntu'
-          platform_version
-        elsif platform_version =~ /sid$/
-          platform_version
-        else
-          platform_version.to_i.to_s
-        end
-      when platform_family == 'smartos'
-        platform_version
-      when platform_family == 'omnios'
-        platform_version
-      end
-    rescue NoMethodError
-      nil
+      return platform_version.to_i.to_s if platform_family == 'rhel'
+      return platform_version if platform_family == 'rhel' && platform == 'amazon'
+      return platform_version if platform_family 'fedora'
+      return platform_version if platform_family == 'smartos'
+      return platform_version if platform_family == 'omnios'
+      return platform if platform == 'ubuntu'
+      return platform_version if platform_version =~ /sid$/
+      return platform_version.to_i.to_s if platform_family == 'debian'
     end
   end
 end
