@@ -15,7 +15,7 @@ class Chef
       attribute :package_name, kind_of: String
 
       include HttpdCookbook::Module::Helpers
-      include HttpdCookbook::Service::Helpers
+      include HttpdCookbook::Helpers
 
       def parsed_filename
         return filename if filename

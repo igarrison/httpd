@@ -37,7 +37,7 @@ class Chef
       attribute :timeout, kind_of: String, default: '400'
       attribute :version, kind_of: String, default: nil
 
-      include HttpdCookbook::Service::Helpers
+      include HttpdCookbook::Helpers
 
       def parsed_maxclients
         return maxclients if maxclients

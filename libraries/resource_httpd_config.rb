@@ -15,7 +15,7 @@ class Chef
       attribute :source, kind_of: String, default: nil
       attribute :variables, kind_of: [Hash], default: nil
 
-      include HttpdCookbook::Service::Helpers
+      include HttpdCookbook::Helpers
 
       def parsed_httpd_version
         return httpd_version if httpd_version
