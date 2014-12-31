@@ -82,6 +82,15 @@ platforms:
     ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
     ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
 
+- name: fedora-21
+  driver_plugin: digital_ocean
+  driver_config:
+    size: 2gb
+    image: fedora-21-x64
+    region: <%= ENV['DIGITAL_OCEAN_REGION'] %>
+    ssh_key_ids: <%= ENV['DIGITAL_OCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITAL_OCEAN_SSH_KEY_PATH'] %>
+
 # - name: suse-11.3
 #   driver_plugin: ec2
 #   driver_config:
@@ -222,6 +231,7 @@ suites:
       'amazon-2014.09',
       'centos-7.0',
       'fedora-20',
+      'fedora-21',
       'omnios-151006',
       'smartos-13.4.0',
       'ubuntu-14.04',
@@ -240,6 +250,7 @@ suites:
       'amazon-2014.09',
       'centos-7.0',
       'fedora-20',
+      'fedora-21',
       'omnios-151006',
       'smartos-13.4.0',
       'ubuntu-14.04',
@@ -287,6 +298,8 @@ suites:
     includes: [
       'amazon-2014.09',
       'centos-7.0',
+      'fedora-20',
+      'fedora-21',
       'omnios-151006',
       'smartos-13.4.0',
       'ubuntu-14.04',
