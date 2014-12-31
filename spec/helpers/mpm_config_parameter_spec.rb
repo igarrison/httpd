@@ -1,4 +1,4 @@
-require_relative '../../libraries/helpers.rb'
+require_relative '../../libraries/info_mpm_config_parameter'
 
 describe 'default_value_for' do
   before do

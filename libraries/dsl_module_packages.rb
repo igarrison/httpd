@@ -1,6 +1,7 @@
 module HttpdCookbook
   module Helpers
     module ModuleInfoDSL
+      
       def find(key)
         found_key = modules_list.keys.find { |lock| key.merge(lock) == key }
         modules_list[found_key]
@@ -20,6 +21,7 @@ module HttpdCookbook
       def modules_list
         @modules_list ||= {}
       end
+            
     end
   end
 end

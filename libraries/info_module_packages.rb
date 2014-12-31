@@ -1,4 +1,4 @@
-require_relative 'module_package_info_dsl'
+require_relative 'dsl_module_packages'
 
 module HttpdCookbook
   module Helpers
@@ -284,7 +284,7 @@ module HttpdCookbook
               ),
               found_in_package: ->(name) { "mod_#{name}" }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.2' },
+      modules for: { platform: 'amazon', httpd_version: '2.2' },
               are: %w(authz_svn),
               found_in_package: ->(_name) { 'mod_dav_svn' }
 
@@ -316,28 +316,28 @@ module HttpdCookbook
               ),
               found_in_package: ->(name) { "mod24_#{name}" }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.4' },
+      modules for: { platform: 'amazon', httpd_version: '2.4' },
               are: %w(authz_svn dontdothat),
               found_in_package: ->(_name) { 'mod_dav_svn' }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.4' },
+      modules for: { platform: 'amazon', httpd_version: '2.4' },
               are: %w(authnz_ldap),
               found_in_package: ->(_name) { 'mod_ldap' }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.4' },
+      modules for: { platform: 'amazon', httpd_version: '2.4' },
               are: %w(xml2enc),
               found_in_package: ->(_name) { 'mod_proxy_html' }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.4' },
+      modules for: { platform: 'amazon', httpd_version: '2.4' },
               are: %w(rev),
               found_in_package: ->(_name) { 'mod_revocator' }
 
-      modules for: { platform_family: 'amazon', httpd_version: '2.4' },
+      modules for: { platform: 'amazon', httpd_version: '2.4' },
               are: %w(auth_form session_cookie session_crypto session_dbd),
               found_in_package: ->(_name) { 'mod_session' }
     end
 
-    def keyname_for_module(platform, platform_family, platform_version)
+    def platform_version_key(platform, platform_family, platform_version)
       return platform_version.to_i.to_s if platform_family == 'rhel' && platform != 'amazon'
       return platform_version.to_i.to_s if platform_family == 'debian' && !(platform == 'ubuntu' || platform_version =~ /sid$/)
       return platform_version.to_i.to_s if platform_family == 'freebsd'
@@ -350,7 +350,7 @@ module HttpdCookbook
         httpd_version: httpd_version,
         platform: platform,
         platform_family: platform_family,
-        platform_version: keyname_for_module(platform, platform_family, platform_version)
+        platform_version: platform_version_key(platform, platform_family, platform_version)
         )
     end
   end

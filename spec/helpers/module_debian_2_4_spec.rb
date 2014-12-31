@@ -1,4 +1,4 @@
-require_relative '../../libraries/helpers_module'
+require_relative '../../libraries/info_module_packages'
 
 describe 'looking up module package name' do
   before do
