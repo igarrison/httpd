@@ -1,5 +1,34 @@
-require_relative 'dsl_module_packages'
+# DSL bits
+module HttpdCookbook
+  module Helpers
+    module ModuleInfoDSL
+      # create big crash hash with other hashes as keys
+      # {:platform=>"amazon", :httpd_version=>"2.4", :module=>"rev"}=>"mod_revocator",
+      # {:platform=>"amazon", :httpd_version=>"2.4", :module=>"auth_form"}=>"mod_session",
+      # {:platform=>"amazon", :httpd_version=>"2.4",:moadule=>"session_dbd"}=>"mod_session"
+      def modules(options)
+        options[:are].each do |mod|
+          key = options[:for].merge(module: mod)
+          package = options[:found_in_package]
+          package = package.call(mod) if package.is_a?(Proc)
+          modules_list[key] = package
+        end
+      end
 
+      def modules_list
+        @modules_list ||= {}
+      end
+
+      # dig them out
+      def find(key)
+        found_key = modules_list.keys.find { |lock| key.merge(lock) == key }
+        modules_list[found_key]
+      end
+    end
+  end
+end
+
+# Info bits
 module HttpdCookbook
   module Helpers
     class ModuleInfo

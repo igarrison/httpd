@@ -1,6 +1,3 @@
-require 'chef/resource/lwrp_base'
-require_relative 'helpers'
-
 class Chef
   class Resource
     class HttpdService < Chef::Resource::LWRPBase
@@ -107,7 +104,7 @@ class Chef
 
       def parsed_package_name
         return package_name if package_name
-        package_name_for(
+        package_name_for_service(
           node['platform'],
           node['platform_family'],
           node['platform_version'],
