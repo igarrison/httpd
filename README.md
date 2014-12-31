@@ -26,23 +26,23 @@ The following platforms have been tested with Test Kitchen:
 |----------------+-----+-----+-----|
 |                | 2.0 | 2.2 | 2.4 |
 |----------------+-----+-----+-----|
-| debian-7       |     |     |     |
+| debian-7       |     | X   |     |
 |----------------+-----+-----+-----|
-| ubuntu-10.04   |     |     |     |
+| ubuntu-10.04   |     | X   |     |
 |----------------+-----+-----+-----|
-| ubuntu-12.04   |     |     |     |
+| ubuntu-12.04   |     | X   |     |
 |----------------+-----+-----+-----|
-| ubuntu-14.04   |     |     |     |
+| ubuntu-14.04   |     |     | X   |
 |----------------+-----+-----+-----|
-| centos-5       |     |     |     |
+| centos-5       |     | X   |     |
 |----------------+-----+-----+-----|
-| centos-6       |     |     |     |
+| centos-6       |     | X   |     |
 |----------------+-----+-----+-----|
-| centos-7       |     |     |     |
+| centos-7       |     |     | X   |
 |----------------+-----+-----+-----|
-| amazon         |     |     |     |
+| amazon         |     | X   | X   |
 |----------------+-----+-----+-----|
-| fedora-20      |     |     |     |
+| fedora-20      |     |     | X   |
 |----------------+-----+-----+-----|
 | suse-11.3      |     |     |     |
 |----------------+-----+-----+-----|
@@ -290,7 +290,8 @@ the instance parameter to calculate where the config is dropped off.
   
 - `source` - The ERB format template source used to render the file.
 
--`variables` - A hash of variables passed to the underlying template resource
+- `variables` - A hash of variables passed to the underlying template
+  resource  
 
 License & Authors
 -----------------
